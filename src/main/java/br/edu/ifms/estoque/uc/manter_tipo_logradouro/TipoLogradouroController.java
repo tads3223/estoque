@@ -19,7 +19,7 @@ public class TipoLogradouroController {
     
     private List<TipoLogradouro> lista = new LinkedList<>();
     
-    @RequestMapping(method = RequestMethod.POST, name = "/tipo-logradouro")
+    @RequestMapping(method = RequestMethod.POST, name = "Criar um Tipo de Logradouro", path = "/tipo-logradouro")
     public TipoLogradouro create(
             Long id,
             String nome
@@ -29,7 +29,7 @@ public class TipoLogradouroController {
         return tipoLogradouro;
     }
     
-    @RequestMapping(method = RequestMethod.GET, name = "/tipo-logradouro")
+    @RequestMapping(method = RequestMethod.GET, name = "Listar Tipos de Logradouros", path = "/tipo-logradouro")
     public List<TipoLogradouro> list() {
         return lista;
     }
