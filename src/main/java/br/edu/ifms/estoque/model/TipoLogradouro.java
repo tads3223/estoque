@@ -5,7 +5,6 @@
 package br.edu.ifms.estoque.model;
 
 import br.edu.ifms.estoque.model.heranca.ElementoBase;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;

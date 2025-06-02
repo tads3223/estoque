@@ -4,11 +4,9 @@
  */
 package br.edu.ifms.estoque.mapper;
 
-import br.edu.ifms.estoque.dto.LogradouroResponse;
 import br.edu.ifms.estoque.dto.TipoLogradouroResponse;
-import static br.edu.ifms.estoque.mapper.LogradouroMapper.toDto;
-import br.edu.ifms.estoque.model.Logradouro;
 import br.edu.ifms.estoque.model.TipoLogradouro;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,5 +32,17 @@ public class TipoLogradouroMapper {
         return list.stream()
                 .map((entity) -> toDto(entity))
                 .collect(Collectors.toList());
+    }
+    
+    public static List<TipoLogradouroResponse> entitylistToDto(
+            List<TipoLogradouro> list
+    ) {
+        List<TipoLogradouroResponse> l = new LinkedList();
+        for(int i = 0; i < list.size(); i++) {
+            TipoLogradouro e = list.get(i);
+            TipoLogradouroResponse dto = toDto(e);
+            l.add(dto);
+        }
+        return l;
     }
 }
