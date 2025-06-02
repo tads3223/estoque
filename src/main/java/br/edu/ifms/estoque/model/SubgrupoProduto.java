@@ -16,22 +16,22 @@ import java.io.Serializable;
  * @author 1513003
  */
 @Entity
-public class Logradouro implements Serializable {
+public class SubgrupoProduto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nome;
     
     @ManyToOne
-    private TipoLogradouro tipoLogradouro;
+    private SubgrupoProduto grupoProduto;
 
-    public Logradouro() {
+    public SubgrupoProduto() {
     }
 
-    public Logradouro(Long id, String nome, TipoLogradouro tipoLogradouro) {
+    public SubgrupoProduto(Long id, String nome, SubgrupoProduto grupoProduto) {
         this.id = id;
         this.nome = nome;
-        this.tipoLogradouro = tipoLogradouro;
+        this.grupoProduto = grupoProduto;
     }
 
     public Long getId() {
@@ -50,11 +50,12 @@ public class Logradouro implements Serializable {
         this.nome = nome;
     }
 
-    public TipoLogradouro getTipoLogradouro() {
-        return tipoLogradouro;
+    public SubgrupoProduto getGrupoProduto() {
+        return grupoProduto;
     }
 
-    public void setTipoLogradouro(TipoLogradouro tipoLogradouro) {
-        this.tipoLogradouro = tipoLogradouro;
+    public void setGrupoProduto(SubgrupoProduto grupoProduto) {
+        this.grupoProduto = grupoProduto;
     }
+    
 }

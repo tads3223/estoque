@@ -1,0 +1,192 @@
+2025-05-06 23:25:09.394077-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * \000d\000aFROM JOINED_BASE \000d\000ainner join marca on marca.id = joined_base.id\000d\000a\000d\000a[*]SELECT * \000d\000aFROM JOINED_BASE \000d\000ainner join bairro on bairro.id = joined_base.id"; SQL statement:
+SELECT * 
+FROM JOINED_BASE 
+inner join marca on marca.id = joined_base.id
+
+SELECT * 
+FROM JOINED_BASE 
+inner join bairro on bairro.id = joined_base.id [42000-232]
+2025-05-06 23:44:25.475675-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 19:52:31.152454-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 20:10:20.606473-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 20:12:24.518405-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 20:13:25.537777-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 20:14:34.611157-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 20:17:12.971981-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 20:20:29.135935-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 20:22:34.969333-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 20:33:28.408361-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 20:35:19.325378-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 20:36:22.451948-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 20:39:13.720443-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 20:39:46.395479-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 20:53:51.952983-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 20:55:23.811573-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 20:55:54.343972-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 20:56:22.728244-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 20:57:53.105886-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 20:58:41.805451-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 21:01:04.085559-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 21:01:47.840161-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 21:02:17.314614-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 21:02:40.720871-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 21:10:09.072157-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 21:10:43.647169-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 21:12:01.774427-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 21:12:31.177457-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 21:13:48.289944-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 21:14:44.287589-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 21:16:03.422825-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 21:16:29.865728-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 21:20:20.589502-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-26 21:21:11.913385-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-27 22:26:02.930587-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-27 22:33:15.202101-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-27 22:38:31.752626-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-27 22:38:51.190063-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-27 22:48:21.964317-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-27 22:49:15.964372-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-27 22:51:23.637350-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-27 22:51:42.107406-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-27 22:52:01.481487-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-27 22:53:12.841070-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-27 22:53:38.368031-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-27 22:54:54.904198-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-27 23:06:41.831831-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-27 23:09:44.251420-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-27 23:13:31.786893-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-27 23:13:54.272678-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DROP [*]PERFIS_USUARIO"; expected "TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, MATERIALIZED, VIEW, ROLE, ALIAS, SCHEMA, ALL OBJECTS, DOMAIN, TYPE, AGGREGATE, SYNONYM"; SQL statement:
+DROP PERFIS_USUARIO [42001-232]
+2025-05-27 23:14:19.154014-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-27 23:15:29.420194-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-27 23:16:39.135210-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-27 23:25:53.931376-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-27 23:26:59.047646-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-27 23:27:46.117742-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-27 23:28:05.672869-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-27 23:29:01.674849-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-27 23:29:30.415116-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-27 23:30:42.908951-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-05-27 23:42:01.977766-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
+create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]

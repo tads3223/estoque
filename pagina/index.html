@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário</title>
+</head>
+<body>
+    <form method="post" action="http://localhost:8080/logradouro">
+        <label for="id">
+            ID:
+        </label>
+        <input type="text" name="id" id="id" />
+        <p />
+        <label for="nome">
+            Nome:
+        </label>
+        <input type="text" name="nome" id="nome" />
+        <p />
+
+        <label>Tipos de Logradouros</label>
+        <select name="tipoLogradouroId">
+            <option value="1">Rua</option>
+            <option value="2">Avenida</option>
+        </select>
+
+        <input type="submit" value="Enviar" />
+        <input type="reset" value="Limpar">
+    </form>
+</body>
+</html>

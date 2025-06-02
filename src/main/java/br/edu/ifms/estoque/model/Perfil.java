@@ -6,32 +6,30 @@ package br.edu.ifms.estoque.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import java.io.Serializable;
+import jakarta.persistence.ManyToMany;
+import java.util.List;
 
 /**
  *
  * @author 1513003
  */
 @Entity
-public class Logradouro implements Serializable {
+public class Perfil {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private Long id;
     private String nome;
     
-    @ManyToOne
-    private TipoLogradouro tipoLogradouro;
+    @ManyToMany(mappedBy = "perfis")
+    private List<Usuario> usuarios;
 
-    public Logradouro() {
+    public Perfil() {
     }
 
-    public Logradouro(Long id, String nome, TipoLogradouro tipoLogradouro) {
+    public Perfil(Long id, String nome) {
         this.id = id;
         this.nome = nome;
-        this.tipoLogradouro = tipoLogradouro;
     }
 
     public Long getId() {
@@ -50,11 +48,12 @@ public class Logradouro implements Serializable {
         this.nome = nome;
     }
 
-    public TipoLogradouro getTipoLogradouro() {
-        return tipoLogradouro;
+    public List<Usuario> getUsuarios() {
+        return usuarios;
     }
 
-    public void setTipoLogradouro(TipoLogradouro tipoLogradouro) {
-        this.tipoLogradouro = tipoLogradouro;
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
     }
+    
 }

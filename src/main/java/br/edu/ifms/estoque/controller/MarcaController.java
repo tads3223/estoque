@@ -4,17 +4,18 @@
  */
 package br.edu.ifms.estoque.controller;
 
-import br.edu.ifms.estoque.dto.TipoLogradouroResponse;
-import br.edu.ifms.estoque.mapper.TipoLogradouroMapper;
-import br.edu.ifms.estoque.model.TipoLogradouro;
-import br.edu.ifms.estoque.repository.TipoLogradouroRepository;
+import br.edu.ifms.estoque.model.Marca;
+import br.edu.ifms.estoque.repository.MarcaRepository;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,29 +24,27 @@ import org.springframework.web.bind.annotation.RestController;
  * @author 1513003
  */
 @RestController
-public class TipoLogradouroController {
+@RequestMapping("/marca")
+public class MarcaController {
 
     @Autowired
-    private TipoLogradouroRepository repository;
+    private MarcaRepository repository;
 
     @Transactional
-    @RequestMapping(method = RequestMethod.POST, path = "/tipo-logradouro")
-    public TipoLogradouro create(
-            @RequestParam(name = "nome", required = true) String nome,
-            @RequestParam(name = "sigla", required = true) String sigla
+    @PostMapping
+    public Marca create(
+            @RequestParam(name = "nome", required = true) String nome
     ) {
-        TipoLogradouro tipoLogradouro = new TipoLogradouro(null, nome);
-        tipoLogradouro.setSigla(sigla);
-        repository.save(tipoLogradouro);
+        var marca = new Marca(null, nome);
+        repository.save(marca);
         
-        return tipoLogradouro;
+        return marca;
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/tipo-logradouro")
-    public List<TipoLogradouroResponse> list() {
+    @GetMapping
+    public List<Marca> list() {
         var lista = repository.findAll();
-        
-        return TipoLogradouroMapper.listDto(lista);
+        return lista;
     }
 
     /**
@@ -54,8 +53,8 @@ public class TipoLogradouroController {
      * @param id
      * @return
      */
-    @RequestMapping(method = RequestMethod.GET, path = "/tipo-logradouro/{id}")
-    public TipoLogradouro findBy(
+    @GetMapping("/{id}")
+    public Marca findBy(
             @PathVariable Long id
     ) {
         var optional = find(id);
@@ -65,36 +64,34 @@ public class TipoLogradouroController {
         return null;
     }
 
-    public Optional<TipoLogradouro> find(
+    public Optional<Marca> find(
             Long id
     ) {
-        Optional<TipoLogradouro> optional = repository.findById(id);
+        Optional<Marca> optional = repository.findById(id);
         return optional;
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, path = "/tipo-logradouro/{id}")
+    @DeleteMapping("/{id}")
     public void delete(
             @PathVariable(name = "id") Long id
     ) {
         var optional = find(id);
         if (optional.isPresent()) {
-            TipoLogradouro tipoLogradouro = optional.get();
+            Marca tipoLogradouro = optional.get();
             repository.delete(tipoLogradouro);
         }
     }
 
     @Transactional
-    @RequestMapping(method = RequestMethod.PUT, path = "/tipo-logradouro/{id}")
-    public TipoLogradouro update(
+    @PutMapping("/{id}")
+    public Marca update(
             @PathVariable Long id,
-            @RequestParam(name = "nome", required = true) String nome,
-            @RequestParam(name = "sigla", required = true) String sigla
+            @RequestParam(name = "nome", required = true) String nome
     ) {
         var optional = find(id);
         if (optional.isPresent()) {
             var tipoLogradouro = optional.get();
             tipoLogradouro.setNome(nome);
-            tipoLogradouro.setSigla(sigla);
             return tipoLogradouro;
         }
         return null;

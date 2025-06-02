@@ -2,13 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package br.edu.ifms.estoque.model;
+package br.edu.ifms.estoque.model.heranca;
 
+import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import java.io.Serializable;
 
 /**
@@ -16,22 +18,21 @@ import java.io.Serializable;
  * @author 1513003
  */
 @Entity
-public class Logradouro implements Serializable {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "elemento_type")
+public abstract class ElementoBase implements Serializable {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nome;
-    
-    @ManyToOne
-    private TipoLogradouro tipoLogradouro;
 
-    public Logradouro() {
+    public ElementoBase() {
     }
 
-    public Logradouro(Long id, String nome, TipoLogradouro tipoLogradouro) {
+    public ElementoBase(Long id, String nome) {
         this.id = id;
         this.nome = nome;
-        this.tipoLogradouro = tipoLogradouro;
     }
 
     public Long getId() {
@@ -49,12 +50,5 @@ public class Logradouro implements Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    public TipoLogradouro getTipoLogradouro() {
-        return tipoLogradouro;
-    }
-
-    public void setTipoLogradouro(TipoLogradouro tipoLogradouro) {
-        this.tipoLogradouro = tipoLogradouro;
-    }
+    
 }

@@ -4,35 +4,47 @@
  */
 package br.edu.ifms.estoque.model;
 
+import br.edu.ifms.estoque.model.heranca.ElementoBase;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import java.util.List;
+
 /**
  *
  * @author 1513003
  */
-public class TipoLogradouro {
-    private Long id;
-    private String nome;
-    
-    public TipoLogradouro() {}
+@Entity
+@DiscriminatorValue("TIPO_LOGRADOURO")
+public class TipoLogradouro extends ElementoBase {
+
+    private String sigla;
+
+    @OneToMany(mappedBy = "tipoLogradouro")
+    private List<Logradouro> logradouros;
+
+    public TipoLogradouro() {
+    }
 
     public TipoLogradouro(Long id, String nome) {
-        this.id = id;
-        this.nome = nome;
+        super(id, nome);
     }
 
-    public Long getId() {
-        return id;
+    public String getSigla() {
+        return sigla;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setSigla(String sigla) {
+        this.sigla = sigla;
     }
 
-    public String getNome() {
-        return nome;
+    public List<Logradouro> getLogradouros() {
+        return logradouros;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setLogradouros(List<Logradouro> logradouros) {
+        this.logradouros = logradouros;
     }
-    
+
 }
