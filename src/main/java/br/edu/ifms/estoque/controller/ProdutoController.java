@@ -4,13 +4,16 @@
  */
 package br.edu.ifms.estoque.controller;
 
-import br.edu.ifms.estoque.dto.LogradouroResponse;
+import br.edu.ifms.estoque.dto.ProdutoResponse;
 import br.edu.ifms.estoque.dto.ProdutoCreateRequest;
 import br.edu.ifms.estoque.dto.ProdutoResponse;
-import br.edu.ifms.estoque.mapper.LogradouroMapper;
 import br.edu.ifms.estoque.mapper.ProdutoMapper;
-import br.edu.ifms.estoque.model.Logradouro;
+import br.edu.ifms.estoque.mapper.ProdutoMapper;
+import br.edu.ifms.estoque.model.Produto;
+import br.edu.ifms.estoque.repository.MarcaRepository;
 import br.edu.ifms.estoque.repository.ProdutoRepository;
+import br.edu.ifms.estoque.repository.SubgrupoProdutoRepository;
+import br.edu.ifms.estoque.repository.UnidadeMedidaRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,41 +36,51 @@ public class ProdutoController {
     @Autowired
     private ProdutoRepository repository;
     
+    @Autowired
+    private SubgrupoProdutoRepository subgrupoRepository;
+    
+    @Autowired
+    private UnidadeMedidaRepository unidadeMedidaRepository;
+    
+    @Autowired
+    private MarcaRepository marcaRepository;
+    
     @Transactional
     @PostMapping
     public ProdutoResponse create(
             @RequestBody ProdutoCreateRequest request
     ) {
         var entity = ProdutoMapper
-                .toEntity(request, tipoLogradouroRepository);
+                .toEntity(request, subgrupoRepository,
+                        unidadeMedidaRepository, marcaRepository);
         // Enfim, salva o objeto no banco de dados
         var saved = repository.save(entity);
-        var dto = LogradouroMapper.entityToDto(saved);
+        var dto = ProdutoMapper.toDto(saved);
         return dto;
     }
     
     @GetMapping
-    public List<LogradouroResponse> list() {
-        List<Logradouro> l = repository.findAll();
-        return LogradouroMapper.listDtoDidatico(l);
+    public List<ProdutoResponse> list() {
+        List<Produto> l = repository.findAll();
+        return ProdutoMapper.listDto(l);
     }
     
     @GetMapping("/{id}")
-    public Logradouro find(
+    public Produto find(
             @PathVariable Long id
     ) {
         return repository.findById(id).get();
     }
     
-    @Transactional
-    @PutMapping("/{id}")
-    public Logradouro update(
-            @PathVariable Long id,
-            @RequestBody Logradouro entity
-    ) {
-        var logradouro = repository.findById(id).get();
-        logradouro.setNome(entity.getNome());
-        logradouro.setTipoLogradouro(entity.getTipoLogradouro());
-        return logradouro;
-    }
+//    @Transactional
+//    @PutMapping("/{id}")
+//    public Produto update(
+//            @PathVariable Long id,
+//            @RequestBody Produto entity
+//    ) {
+//        var logradouro = repository.findById(id).get();
+//        logradouro.setNome(entity.getNome());
+//        logradouro.setTipoProduto(entity.getTipoProduto());
+//        return logradouro;
+//    }
 }

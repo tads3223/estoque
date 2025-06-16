@@ -80,5 +80,7 @@ public class ProdutoMapper {
         entity.setSubgrupo(subgrupo);
         entity.setUnidadeMedida(unidadeMedida);
         entity.setMarca(marca);
+        
+        return entity;
     }
 }
