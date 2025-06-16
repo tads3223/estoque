@@ -6,7 +6,6 @@ package br.edu.ifms.estoque.model;
 
 import br.edu.ifms.estoque.model.heranca.TablePerClassBase;
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import java.math.BigDecimal;
 import java.time.LocalDate;
