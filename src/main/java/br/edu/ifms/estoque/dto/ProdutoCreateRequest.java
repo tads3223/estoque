@@ -4,13 +4,21 @@
  */
 package br.edu.ifms.estoque.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
 /**
  *
  * @author 1513003
  */
 public class ProdutoCreateRequest {
-    
+
+    @NotNull
+    @NotEmpty
+    @NotBlank
     private String nome;
+    
     private String descricao;
     private Integer estoqueMinimo;
     private SubgrupoProdutoResponse subGrupo;

@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
  * @author 1513003
  */
 public class ProdutoMapper {
-    
+
     public static ProdutoResponse toDto(
             Produto entity
     ) {
@@ -32,12 +32,22 @@ public class ProdutoMapper {
         dto.setEstoqueMinimo(entity.getEstoqueMinimo());
         dto.setPreco(entity.getPreco());
         dto.setDataUltimaCompra(entity.getDataUltimaCompra());
-        dto.setSubGrupo(SubgrupoProdutoMapper.toDto(entity.getSubgrupo()));
-        dto.setUnidadeMedida(UnidadeMedidaMapper.toDto(entity.getUnidadeMedida()));
-        dto.setMarca(MarcaMapper.toDto(entity.getMarca()));
+
+        if (entity.getSubgrupo() != null) {
+            dto.setSubGrupo(SubgrupoProdutoMapper
+                    .toDto(entity.getSubgrupo()));
+        }
+        if (entity.getUnidadeMedida() != null) {
+            dto.setUnidadeMedida(UnidadeMedidaMapper
+                    .toDto(entity.getUnidadeMedida()));
+        }
+        if (entity.getMarca() != null) {
+            dto.setMarca(MarcaMapper.toDto(entity.getMarca()));
+        }
+
         return dto;
     }
-    
+
     public static List<ProdutoResponse> listDto(
             List<Produto> list
     ) {
@@ -45,19 +55,19 @@ public class ProdutoMapper {
                 .map((entity) -> toDto(entity))
                 .collect(Collectors.toList());
     }
-    
+
     public static List<ProdutoResponse> entitylistToDto(
             List<Produto> list
     ) {
         List<ProdutoResponse> l = new LinkedList();
-        for(int i = 0; i < list.size(); i++) {
+        for (int i = 0; i < list.size(); i++) {
             Produto e = list.get(i);
             ProdutoResponse dto = toDto(e);
             l.add(dto);
         }
         return l;
     }
-    
+
     public static Produto toEntity(
             ProdutoCreateRequest dto,
             SubgrupoProdutoRepository subgrupoProdutoRepository,
@@ -67,20 +77,27 @@ public class ProdutoMapper {
         var entity = new Produto(null, dto.getNome());
         entity.setDescricao(dto.getDescricao());
         entity.setEstoqueMinimo(dto.getEstoqueMinimo());
-        
-        var subgrupo = subgrupoProdutoRepository
-                .findById(dto.getSubGrupo().getId())
-                .get();
-        var unidadeMedida = unidadeMedidaRepository
-                .findById(dto.getUnidadeMedida().getId())
-                .get();
-        var marca = marcaRepository
-                .findById(dto.getMarca().getId())
-                .get();
-        entity.setSubgrupo(subgrupo);
-        entity.setUnidadeMedida(unidadeMedida);
-        entity.setMarca(marca);
-        
+
+        if (dto.getSubGrupo() != null) {
+            var subgrupo = subgrupoProdutoRepository
+                    .findById(dto.getSubGrupo().getId())
+                    .get();
+            entity.setSubgrupo(subgrupo);
+        }
+
+        if (dto.getUnidadeMedida() != null) {
+            var unidadeMedida = unidadeMedidaRepository
+                    .findById(dto.getUnidadeMedida().getId())
+                    .get();
+            entity.setUnidadeMedida(unidadeMedida);
+        }
+
+        if (dto.getMarca() != null) {
+            var marca = marcaRepository
+                    .findById(dto.getMarca().getId())
+                    .get();
+            entity.setMarca(marca);
+        }
         return entity;
     }
 }
