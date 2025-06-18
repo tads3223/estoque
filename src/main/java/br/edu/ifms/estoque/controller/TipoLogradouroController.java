@@ -4,15 +4,22 @@
  */
 package br.edu.ifms.estoque.controller;
 
+import br.edu.ifms.estoque.dto.CreateTipoLogradouroRequest;
 import br.edu.ifms.estoque.dto.TipoLogradouroResponse;
 import br.edu.ifms.estoque.mapper.TipoLogradouroMapper;
 import br.edu.ifms.estoque.model.TipoLogradouro;
 import br.edu.ifms.estoque.repository.TipoLogradouroRepository;
+import jakarta.validation.Valid;
+import java.net.http.HttpClient;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,15 +37,15 @@ public class TipoLogradouroController {
 
     @Transactional
     @RequestMapping(method = RequestMethod.POST, path = "/tipo-logradouro")
-    public TipoLogradouro create(
-            @RequestParam(name = "nome", required = true) String nome,
-            @RequestParam(name = "sigla", required = true) String sigla
+    public ResponseEntity<TipoLogradouroResponse> create(
+            @RequestBody @Valid CreateTipoLogradouroRequest dto
     ) {
-        TipoLogradouro tipoLogradouro = new TipoLogradouro(null, nome);
-        tipoLogradouro.setSigla(sigla);
-        repository.save(tipoLogradouro);
-        
-        return tipoLogradouro;
+        TipoLogradouro tipoLogradouro = TipoLogradouroMapper
+                .toEntity(dto);
+        var saved = repository.save(tipoLogradouro);
+        var savedDto = TipoLogradouroMapper
+                .toDto(saved);
+        return new ResponseEntity(savedDto, HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/tipo-logradouro")

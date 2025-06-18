@@ -376,3 +376,237 @@ create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome v
 2025-06-16 21:18:52.701727-03:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_CIDADE" already exists; SQL statement:
 create global temporary table HTE_cidade(rn_ integer not null, id bigint, nome varchar(255), uf varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:29:04.313814-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:29:04.316850-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:35:36.709124-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:35:36.712129-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:35:56.558668-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:35:56.560669-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:36:16.350940-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:36:16.352938-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:37:09.983767-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:37:09.985767-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:39:16.582747-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:39:16.585751-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:39:54.266641-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:39:54.268686-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:42:55.255682-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:42:55.257649-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:46:46.514994-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:46:46.516963-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:48:27.218891-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:48:27.220889-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:48:46.934967-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:48:46.937004-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:49:12.763023-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:49:12.765023-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:49:32.526359-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:49:32.528359-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:55:16.662101-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:55:16.665077-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:56:27.813649-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:56:27.815650-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:56:30.111057-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:56:30.113084-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:59:13.462524-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 22:59:13.464520-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:00:00.285979-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:00:00.287978-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:00:59.007728-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:00:59.011696-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:04:23.391143-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:04:23.393147-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:05:58.569881-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:05:58.571883-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:07:15.059826-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:07:15.061838-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:07:34.756906-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:07:34.758908-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:10:22.729996-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:10:22.731995-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:11:07.318941-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:11:07.320941-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:14:53.024825-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:14:53.026820-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:24:54.661087-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:24:54.663082-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:26:14.226121-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:26:14.228121-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:30:33.135356-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:30:33.137356-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:31:38.160133-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:31:38.161135-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:32:31.205877-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:32:31.208910-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:35:23.982082-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:35:23.985080-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:35:46.902420-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:35:46.904443-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:40:48.473164-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:40:48.475163-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:41:28.850748-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:41:28.852748-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:42:36.508803-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:42:36.510770-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:42:56.221627-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:42:56.223658-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:43:15.937333-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:43:15.938336-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:45:03.872903-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TABLE_PER_CLASS_BASE" already exists; SQL statement:
+create global temporary table HTE_table_per_class_base(rn_ integer not null, id bigint, nome varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]
+2025-06-17 23:45:03.874903-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HTE_TIPO_LOGRADOURO" already exists; SQL statement:
+create global temporary table HTE_tipo_logradouro(rn_ integer not null, id bigint, nome varchar(255), sigla varchar(255), primary key (rn_)) TRANSACTIONAL [42101-232]

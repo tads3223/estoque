@@ -21,8 +21,14 @@ public class ProdutoCreateRequest {
     
     private String descricao;
     private Integer estoqueMinimo;
+    
+    @NotNull(message = "O atributo SUBGRUPO não foi INFORMADO.")
     private SubgrupoProdutoResponse subGrupo;
+    
+    @NotNull(message = "O atributo UNIDADE DE MEDIDA não foi INFORMADO.")
     private UnidadeMedidaResponse unidadeMedida;
+    
+    @NotNull(message = "O atributo MARCA não foi INFORMADO.")
     private MarcaResponse marca;
 
     public ProdutoCreateRequest() {

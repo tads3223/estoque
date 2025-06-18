@@ -34,6 +34,11 @@ public class TipoLogradouro extends TablePerClassBase {
         super(id, nome);
     }
 
+    public TipoLogradouro(String nome, String sigla) {
+        super.setNome(nome);
+        this.sigla = sigla;
+    }
+
     public String getSigla() {
         return sigla;
     }

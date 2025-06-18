@@ -6,6 +6,9 @@ package br.edu.ifms.estoque.mapper;
 
 import br.edu.ifms.estoque.dto.ProdutoCreateRequest;
 import br.edu.ifms.estoque.dto.ProdutoResponse;
+import br.edu.ifms.estoque.exceptions.MarcaNotFoundException;
+import br.edu.ifms.estoque.exceptions.SubgrupoNotExistException;
+import br.edu.ifms.estoque.exceptions.UnidadeMedidaNotFoundException;
 import br.edu.ifms.estoque.model.Produto;
 import br.edu.ifms.estoque.repository.MarcaRepository;
 import br.edu.ifms.estoque.repository.SubgrupoProdutoRepository;
@@ -81,21 +84,21 @@ public class ProdutoMapper {
         if (dto.getSubGrupo() != null) {
             var subgrupo = subgrupoProdutoRepository
                     .findById(dto.getSubGrupo().getId())
-                    .get();
+                    .orElseThrow(SubgrupoNotExistException::new);
             entity.setSubgrupo(subgrupo);
         }
 
         if (dto.getUnidadeMedida() != null) {
             var unidadeMedida = unidadeMedidaRepository
                     .findById(dto.getUnidadeMedida().getId())
-                    .get();
+                    .orElseThrow(UnidadeMedidaNotFoundException::new);
             entity.setUnidadeMedida(unidadeMedida);
         }
 
         if (dto.getMarca() != null) {
             var marca = marcaRepository
                     .findById(dto.getMarca().getId())
-                    .get();
+                    .orElseThrow(MarcaNotFoundException::new);
             entity.setMarca(marca);
         }
         return entity;
