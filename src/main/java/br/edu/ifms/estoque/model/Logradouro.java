@@ -4,23 +4,16 @@
  */
 package br.edu.ifms.estoque.model;
 
+import br.edu.ifms.estoque.model.heranca.JoinedBase;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import java.io.Serializable;
 
 /**
  *
  * @author 1513003
  */
 @Entity
-public class Logradouro implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String nome;
+public class Logradouro extends JoinedBase {
     
     @ManyToOne
     private TipoLogradouro tipoLogradouro;
@@ -29,25 +22,8 @@ public class Logradouro implements Serializable {
     }
 
     public Logradouro(Long id, String nome, TipoLogradouro tipoLogradouro) {
-        this.id = id;
-        this.nome = nome;
+        super(id, nome);
         this.tipoLogradouro = tipoLogradouro;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public TipoLogradouro getTipoLogradouro() {

@@ -13,13 +13,14 @@ import jakarta.persistence.Entity;
  * @author 1513003
  */
 @Entity
-@DiscriminatorValue("MARCA")
-public class Marca extends ElementoBase {
+@DiscriminatorValue("CARGO")
+public class Cargo extends ElementoBase {
 
-    public Marca() {
+    public Cargo() {
     }
-    
-    public Marca(Long id, String nome) {
+
+    public Cargo(Long id, String nome) {
         super(id, nome);
     }
+    
 }

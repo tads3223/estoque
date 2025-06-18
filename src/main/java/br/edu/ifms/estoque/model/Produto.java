@@ -7,6 +7,7 @@ package br.edu.ifms.estoque.model;
 import br.edu.ifms.estoque.model.heranca.TablePerClassBase;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -15,6 +16,11 @@ import java.time.LocalDate;
  * @author 1513003
  */
 @Entity
+@SequenceGenerator(
+        sequenceName = "produto_sequence", 
+        name = "tablePerClassBase", 
+        allocationSize = 1
+)
 public class Produto extends TablePerClassBase {
     private String descricao;
     private BigDecimal preco;

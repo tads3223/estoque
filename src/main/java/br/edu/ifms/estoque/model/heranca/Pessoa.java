@@ -4,6 +4,7 @@
  */
 package br.edu.ifms.estoque.model.heranca;
 
+import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,17 +18,19 @@ import java.io.Serializable;
  * @author 1513003
  */
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class TablePerClassBase implements Serializable {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "person_type")
+public abstract class Pessoa implements Serializable {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "tablePerClassBase")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nome;
 
-    public TablePerClassBase() {
+    public Pessoa() {
     }
 
-    public TablePerClassBase(Long id, String nome) {
+    public Pessoa(Long id, String nome) {
         this.id = id;
         this.nome = nome;
     }
@@ -47,4 +50,5 @@ public abstract class TablePerClassBase implements Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
 }

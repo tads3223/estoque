@@ -4,15 +4,21 @@
  */
 package br.edu.ifms.estoque.model;
 
-import br.edu.ifms.estoque.model.heranca.JoinedBase;
+import br.edu.ifms.estoque.model.heranca.TablePerClassBase;
 import jakarta.persistence.Entity;
+import jakarta.persistence.SequenceGenerator;
 
 /**
  *
  * @author 1513003
  */
 @Entity
-public class Bairro extends JoinedBase {
+@SequenceGenerator(
+        sequenceName = "bairro_sequence", 
+        name = "tablePerClassBase", 
+        allocationSize = 1
+)
+public class Bairro extends TablePerClassBase {
 
     public Bairro() {
     }

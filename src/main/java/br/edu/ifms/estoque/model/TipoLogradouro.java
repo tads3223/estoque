@@ -4,10 +4,10 @@
  */
 package br.edu.ifms.estoque.model;
 
-import br.edu.ifms.estoque.model.heranca.ElementoBase;
-import jakarta.persistence.DiscriminatorValue;
+import br.edu.ifms.estoque.model.heranca.TablePerClassBase;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.SequenceGenerator;
 import java.util.List;
 
 /**
@@ -15,8 +15,12 @@ import java.util.List;
  * @author 1513003
  */
 @Entity
-@DiscriminatorValue("TIPO_LOGRADOURO")
-public class TipoLogradouro extends ElementoBase {
+@SequenceGenerator(
+        sequenceName = "tipo_logradouro_sequence", 
+        name = "tablePerClassBase", 
+        allocationSize = 1
+)
+public class TipoLogradouro extends TablePerClassBase {
 
     private String sigla;
 

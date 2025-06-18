@@ -4,7 +4,7 @@
  */
 package br.edu.ifms.estoque.model;
 
-import br.edu.ifms.estoque.model.heranca.TablePerClassBase;
+import br.edu.ifms.estoque.model.heranca.JoinedBase;
 import jakarta.persistence.Entity;
 
 /**
@@ -12,7 +12,7 @@ import jakarta.persistence.Entity;
  * @author 1513003
  */
 @Entity
-public class UnidadeMedida extends TablePerClassBase {
+public class UnidadeMedida extends JoinedBase {
     
     private Boolean fracionado;
 
