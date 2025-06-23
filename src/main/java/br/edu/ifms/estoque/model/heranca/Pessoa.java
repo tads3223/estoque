@@ -4,6 +4,7 @@
  */
 package br.edu.ifms.estoque.model.heranca;
 
+import br.edu.ifms.estoque.enumeration.PersonType;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,20 +20,29 @@ import java.io.Serializable;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "person_type")
+@DiscriminatorColumn(name = "classe_pessoa")
 public abstract class Pessoa implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nome;
+    private String nomeSocial;
+    private PersonType tipoPessoa;
 
     public Pessoa() {
     }
 
-    public Pessoa(Long id, String nome) {
+    public Pessoa(Long id, String nome, String nomeSocial, PersonType tipoPessoa) {
         this.id = id;
         this.nome = nome;
+        this.nomeSocial = nomeSocial;
+    }
+
+    public Pessoa(String nome, String nomeSocial, PersonType tipoPessoa) {
+        this.nome = nome;
+        this.nomeSocial = nomeSocial;
+        this.tipoPessoa = tipoPessoa;
     }
 
     public Long getId() {
@@ -49,6 +59,22 @@ public abstract class Pessoa implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getNomeSocial() {
+        return nomeSocial;
+    }
+
+    public void setNomeSocial(String nomeSocial) {
+        this.nomeSocial = nomeSocial;
+    }
+
+    public PersonType getTipoPessoa() {
+        return tipoPessoa;
+    }
+
+    public void setTipoPessoa(PersonType tipoPessoa) {
+        this.tipoPessoa = tipoPessoa;
     }
 
 }

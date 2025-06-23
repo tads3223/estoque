@@ -4,7 +4,8 @@
  */
 package br.edu.ifms.estoque.model;
 
-import br.edu.ifms.estoque.model.heranca.PessoaJuridica;
+import br.edu.ifms.estoque.model.heranca.Pessoa;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
 /**
@@ -12,6 +13,7 @@ import jakarta.persistence.Entity;
  * @author 1513003
  */
 @Entity
-public class Fornecedor extends PessoaJuridica {
+@DiscriminatorValue("FORNECEDOR")
+public class Fornecedor extends Pessoa {
     
 }
