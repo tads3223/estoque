@@ -4,9 +4,13 @@
  */
 package br.edu.ifms.estoque.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -20,7 +24,15 @@ public class ProdutoCreateRequest {
     private String nome;
     
     private String descricao;
+    
+    @NotNull(message = "O valor do estoque deve ser informado")
+    @Min(value = 1, message = "O estoque mínimo é 1")
     private Integer estoqueMinimo;
+    
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @NotNull(message = "A data da última compra não foi informada")
+    @PastOrPresent(message = "A data informada deve ser igual ou anterior a data atual.")
+    private LocalDateTime dataUltimaCompra;
     
     @NotNull(message = "O atributo SUBGRUPO não foi INFORMADO.")
     private SubgrupoProdutoResponse subGrupo;
@@ -80,5 +92,9 @@ public class ProdutoCreateRequest {
 
     public void setMarca(MarcaResponse marca) {
         this.marca = marca;
+    }
+
+    public LocalDateTime getDataUltimaCompra() {
+        return dataUltimaCompra;
     }
 }

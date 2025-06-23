@@ -17,21 +17,24 @@ import java.time.LocalDate;
  */
 @Entity
 @SequenceGenerator(
-        sequenceName = "produto_sequence", 
-        name = "tablePerClassBase", 
+        sequenceName = "produto_sequence",
+        name = "tablePerClassBase",
         allocationSize = 1
 )
 public class Produto extends TablePerClassBase {
+
     private String descricao;
     private BigDecimal preco;
     private BigDecimal estoque;
     private LocalDate dataUltimaCompra;
     private Integer estoqueMinimo;
-    
+
     @ManyToOne(optional = false)
     private SubgrupoProduto subgrupo;
+    
     @ManyToOne(optional = false)
     private Marca marca;
+    
     @ManyToOne(optional = false)
     private UnidadeMedida unidadeMedida;
 

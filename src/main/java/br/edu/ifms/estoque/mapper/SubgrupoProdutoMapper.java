@@ -20,11 +20,14 @@ public class SubgrupoProdutoMapper {
     public static SubgrupoParent parentToDto(
             SubgrupoProduto entity
     ) {
-        SubgrupoParent dto = new SubgrupoParent(
-                entity.getId(),
-                entity.getNome()
-        );
-        return dto;
+        if (entity != null) {
+            SubgrupoParent dto = new SubgrupoParent(
+                    entity.getId(),
+                    entity.getNome()
+            );
+            return dto;
+        }
+        return null;
     }
 
     public static SubgrupoProdutoResponse toDto(

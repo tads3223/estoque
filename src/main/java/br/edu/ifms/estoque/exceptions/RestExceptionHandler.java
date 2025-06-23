@@ -51,4 +51,23 @@ public class RestExceptionHandler {
                 apiError, 
                 HttpStatus.NOT_FOUND);
     }
+    
+    @ExceptionHandler({
+        SubgrupoNotExistException.class,
+        MarcaNotFoundException.class,
+        UnidadeMedidaNotFoundException.class
+    })
+    public ResponseEntity<MessageApiError> notFoundException(
+            RuntimeException ex
+    ) {
+        MessageApiError apiError = new MessageApiError(
+                LocalDateTime.now(),
+                HttpStatus.NOT_FOUND.value(),
+                HttpStatus.NOT_FOUND.name(),
+                List.of(ex.getMessage())
+        );
+        return new ResponseEntity<>(
+                apiError, 
+                HttpStatus.NOT_FOUND);
+    }
 }
