@@ -4,7 +4,7 @@
  */
 package br.edu.ifms.estoque.mapper;
 
-import br.edu.ifms.estoque.dto.ProdutoCreateRequest;
+import br.edu.ifms.estoque.dto.ProdutoRequest;
 import br.edu.ifms.estoque.dto.ProdutoResponse;
 import br.edu.ifms.estoque.exceptions.MarcaNotFoundException;
 import br.edu.ifms.estoque.exceptions.SubgrupoNotExistException;
@@ -16,14 +16,18 @@ import br.edu.ifms.estoque.repository.UnidadeMedidaRepository;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author 1513003
  */
+@Component
 public class ProdutoMapper {
 
-    public static ProdutoResponse toDto(
+    
+    
+    public ProdutoResponse toDto(
             Produto entity
     ) {
         ProdutoResponse dto = new ProdutoResponse(
@@ -72,7 +76,7 @@ public class ProdutoMapper {
     }
 
     public static Produto toEntity(
-            ProdutoCreateRequest dto,
+            ProdutoRequest dto,
             SubgrupoProdutoRepository subgrupoProdutoRepository,
             UnidadeMedidaRepository unidadeMedidaRepository,
             MarcaRepository marcaRepository

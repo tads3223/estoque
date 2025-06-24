@@ -4,7 +4,7 @@
  */
 package br.edu.ifms.estoque.controller;
 
-import br.edu.ifms.estoque.dto.ProdutoCreateRequest;
+import br.edu.ifms.estoque.dto.ProdutoRequest;
 import br.edu.ifms.estoque.dto.ProdutoResponse;
 import br.edu.ifms.estoque.mapper.ProdutoMapper;
 import br.edu.ifms.estoque.model.Produto;
@@ -46,7 +46,7 @@ public class ProdutoController {
     @Transactional
     @PostMapping
     public ProdutoResponse create(
-            @RequestBody @Valid ProdutoCreateRequest request
+            @RequestBody @Valid ProdutoRequest request
     ) {
         var entity = ProdutoMapper
                 .toEntity(request, subgrupoRepository,

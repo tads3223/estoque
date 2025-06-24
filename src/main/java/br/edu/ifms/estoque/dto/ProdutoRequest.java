@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
  *
  * @author 1513003
  */
-public class ProdutoCreateRequest {
+public class ProdutoRequest {
 
     @NotNull
     @NotEmpty
@@ -43,7 +43,7 @@ public class ProdutoCreateRequest {
     @NotNull(message = "O atributo MARCA não foi INFORMADO.")
     private MarcaResponse marca;
 
-    public ProdutoCreateRequest() {
+    public ProdutoRequest() {
     }
 
     public String getNome() {

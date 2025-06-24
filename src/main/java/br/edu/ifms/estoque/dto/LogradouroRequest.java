@@ -4,24 +4,23 @@
  */
 package br.edu.ifms.estoque.dto;
 
+import jakarta.validation.constraints.NotNull;
+
 /**
  *
  * @author 1513003
  */
-public class LogradouroRequest {
-    private String nome;
+public class LogradouroRequest extends DefaultRequest {
+    
+    @NotNull(message = "O campo TIPO DE LOGRADOURO não foi informado.")
     private Long tipoLogradouroId;
 
     public LogradouroRequest() {
     }
 
     public LogradouroRequest(String nome, Long tipoLogradouroId) {
-        this.nome = nome;
+        super(nome);
         this.tipoLogradouroId = tipoLogradouroId;
-    }
-
-    public String getNome() {
-        return nome;
     }
 
     public Long getTipoLogradouroId() {

@@ -4,19 +4,22 @@
  */
 package br.edu.ifms.estoque.mapper;
 
+import br.edu.ifms.estoque.dto.MarcaRequest;
 import br.edu.ifms.estoque.dto.MarcaResponse;
 import br.edu.ifms.estoque.model.Marca;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author 1513003
  */
-public class MarcaMapper {
+@Component
+public class MarcaMapper implements IMapper<Marca, MarcaResponse, MarcaRequest, MarcaRequest> {
     
-    public static MarcaResponse toDto(
+    @Override
+    public MarcaResponse toDto(
             Marca entity
     ) {
         MarcaResponse dto = new MarcaResponse(
@@ -26,23 +29,26 @@ public class MarcaMapper {
         return dto;
     }
     
-    public static List<MarcaResponse> listDto(
+    @Override
+    public List<MarcaResponse> toListDto(
             List<Marca> list
     ) {
         return list.stream()
                 .map((entity) -> toDto(entity))
                 .collect(Collectors.toList());
     }
-    
-    public static List<MarcaResponse> entitylistToDto(
-            List<Marca> list
-    ) {
-        List<MarcaResponse> l = new LinkedList();
-        for(int i = 0; i < list.size(); i++) {
-            Marca e = list.get(i);
-            MarcaResponse dto = toDto(e);
-            l.add(dto);
-        }
-        return l;
+
+    @Override
+    public Marca toEntity(MarcaRequest request) {
+        return new Marca(
+                null,
+                request.getNome()
+        );
+    }
+
+    @Override
+    public Marca update(MarcaRequest request, Marca entity) {
+        entity.setNome(request.getNome());
+        return entity;
     }
 }

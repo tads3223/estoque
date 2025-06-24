@@ -11,12 +11,15 @@ package br.edu.ifms.estoque.dto;
 public class LogradouroResponse {
     private Long id;
     private String nome;
-    private String tipoLogradouro;
+    private TipoLogradouroResponse tipoLogradouro;
 
     public LogradouroResponse() {
     }
 
-    public LogradouroResponse(Long id, String nome, String tipoLogradouro) {
+    public LogradouroResponse(
+            Long id, 
+            String nome, 
+            TipoLogradouroResponse tipoLogradouro) {
         this.id = id;
         this.nome = nome;
         this.tipoLogradouro = tipoLogradouro;
@@ -30,12 +33,7 @@ public class LogradouroResponse {
         return nome;
     }
 
-    public String getTipoLogradouro() {
+    public TipoLogradouroResponse getTipoLogradouro() {
         return tipoLogradouro;
     }
-    
-    public String getNomeCompleto() {
-        return tipoLogradouro + " " + nome;
-    }
-    
 }

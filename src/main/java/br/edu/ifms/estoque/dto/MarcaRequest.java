@@ -8,13 +8,13 @@ package br.edu.ifms.estoque.dto;
  *
  * @author 1513003
  */
-public class MarcaResponse extends DefaultResponse {
+public class MarcaRequest extends DefaultRequest {
 
-    public MarcaResponse() {
+    public MarcaRequest() {
     }
 
-    public MarcaResponse(Long id, String nome) {
-        super(id, nome);
+    public MarcaRequest(String nome) {
+        super(nome);
     }
     
 }

@@ -4,7 +4,6 @@
  */
 package br.edu.ifms.estoque.controller;
 
-import br.edu.ifms.estoque.dto.LogradouroCreateResponse;
 import br.edu.ifms.estoque.dto.LogradouroRequest;
 import br.edu.ifms.estoque.dto.LogradouroResponse;
 import br.edu.ifms.estoque.mapper.LogradouroMapper;
@@ -12,7 +11,8 @@ import br.edu.ifms.estoque.model.Logradouro;
 import br.edu.ifms.estoque.repository.LogradouroRepository;
 import br.edu.ifms.estoque.repository.TipoLogradouroRepository;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,29 +30,35 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/logradouro")
 public class LogradouroController {
     
-    @Autowired
-    private LogradouroRepository repository;
+    private final LogradouroRepository repository;
     
-    @Autowired
-    private TipoLogradouroRepository tipoLogradouroRepository;
+    private final TipoLogradouroRepository tipoLogradouroRepository;
+    
+    private final LogradouroMapper mapper;
+
+    public LogradouroController(LogradouroRepository repository, TipoLogradouroRepository tipoLogradouroRepository, LogradouroMapper mapper) {
+        this.repository = repository;
+        this.tipoLogradouroRepository = tipoLogradouroRepository;
+        this.mapper = mapper;
+    }
     
     @Transactional
     @PostMapping
-    public LogradouroCreateResponse create(
+    public ResponseEntity<LogradouroResponse> create(
             @RequestBody LogradouroRequest request
     ) {
-        var logradouro = LogradouroMapper
+        var logradouro = mapper
                 .toEntity(request, tipoLogradouroRepository);
         // Enfim, salva o objeto no banco de dados
         var saved = repository.save(logradouro);
-        var dto = LogradouroMapper.entityToDto(saved);
-        return dto;
+        var dto = mapper.toDto(saved);
+        return ResponseEntity.status(HttpStatus.OK).body(dto);
     }
     
     @GetMapping
     public List<LogradouroResponse> list() {
         List<Logradouro> l = repository.findAll();
-        return LogradouroMapper.listDtoDidatico(l);
+        return mapper.toListDto(l);
     }
     
     @GetMapping("/{id}")
