@@ -8,9 +8,9 @@ package br.edu.ifms.estoque.dto;
  *
  * @author 1513003
  */
-public class TipoLogradouroResponse {
-    private Long id;
-    private String nome;
+public class TipoLogradouroResponse extends
+        DefaultResponse {
+
     private String sigla;
 
     public TipoLogradouroResponse() {
@@ -18,20 +18,11 @@ public class TipoLogradouroResponse {
 
     public TipoLogradouroResponse(
             Long id, 
-            String nome,
+            String nome, 
             String sigla
     ) {
-        this.id = id;
-        this.nome = nome;
+        super(id, nome);
         this.sigla = sigla;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getNome() {
-        return nome;
     }
 
     public String getSigla() {

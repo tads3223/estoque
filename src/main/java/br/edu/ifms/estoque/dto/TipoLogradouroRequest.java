@@ -12,26 +12,19 @@ import jakarta.validation.constraints.NotNull;
  *
  * @author 1513003
  */
-public class CreateTipoLogradouroRequest {
-    @NotEmpty
-    @NotBlank
-    private String nome;
-    
+public class TipoLogradouroRequest extends DefaultRequest {
+   
     @NotNull(message = "O campo SIGLA não deve ser NULO")
     @NotEmpty(message = "O campo SIGLA não deve ser VAZIO")
     @NotBlank(message = "O campo SIGLA não deve ser preenchido com ESPAÇO")
     private String sigla;
 
-    public CreateTipoLogradouroRequest() {
+    public TipoLogradouroRequest() {
     }
 
-    public CreateTipoLogradouroRequest(String nome, String sigla) {
-        this.nome = nome;
+    public TipoLogradouroRequest(String nome, String sigla) {
+        super(nome);
         this.sigla = sigla;
-    }
-
-    public String getNome() {
-        return nome;
     }
 
     public String getSigla() {

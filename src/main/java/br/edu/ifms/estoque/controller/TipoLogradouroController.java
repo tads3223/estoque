@@ -4,7 +4,7 @@
  */
 package br.edu.ifms.estoque.controller;
 
-import br.edu.ifms.estoque.dto.CreateTipoLogradouroRequest;
+import br.edu.ifms.estoque.dto.TipoLogradouroRequest;
 import br.edu.ifms.estoque.dto.TipoLogradouroResponse;
 import br.edu.ifms.estoque.mapper.TipoLogradouroMapper;
 import br.edu.ifms.estoque.model.TipoLogradouro;
@@ -32,17 +32,19 @@ public class TipoLogradouroController {
 
     @Autowired
     private TipoLogradouroRepository repository;
+    
+    @Autowired
+    private TipoLogradouroMapper mapper;
 
     @Transactional
     @RequestMapping(method = RequestMethod.POST, path = "/tipo-logradouro")
     public ResponseEntity<TipoLogradouroResponse> create(
-            @RequestBody @Valid CreateTipoLogradouroRequest dto
+            @RequestBody @Valid TipoLogradouroRequest dto
     ) {
-        TipoLogradouro tipoLogradouro = TipoLogradouroMapper
+        TipoLogradouro tipoLogradouro = mapper
                 .toEntity(dto);
         var saved = repository.save(tipoLogradouro);
-        var savedDto = TipoLogradouroMapper
-                .toDto(saved);
+        var savedDto = mapper.toDto(saved);
         return new ResponseEntity(savedDto, HttpStatus.OK);
     }
 
@@ -50,7 +52,7 @@ public class TipoLogradouroController {
     public List<TipoLogradouroResponse> list() {
         var lista = repository.findAll();
         
-        return TipoLogradouroMapper.listDto(lista);
+        return mapper.toListDto(lista);
     }
 
     /**

@@ -4,21 +4,25 @@
  */
 package br.edu.ifms.estoque.mapper;
 
-import br.edu.ifms.estoque.dto.CreateTipoLogradouroRequest;
+import br.edu.ifms.estoque.dto.TipoLogradouroRequest;
 import br.edu.ifms.estoque.dto.TipoLogradouroResponse;
 import br.edu.ifms.estoque.model.TipoLogradouro;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author 1513003
  */
-public class TipoLogradouroMapper {
+@Component
+public class TipoLogradouroMapper implements 
+        IMapper<TipoLogradouro, TipoLogradouroResponse,
+        TipoLogradouroRequest, TipoLogradouroRequest> {
     
-    public static TipoLogradouro toEntity(
-            CreateTipoLogradouroRequest dto
+    @Override
+    public TipoLogradouro toEntity(
+            TipoLogradouroRequest dto
     ) {
         var entity = new TipoLogradouro(
                 dto.getNome(),
@@ -27,7 +31,8 @@ public class TipoLogradouroMapper {
         return entity;
     }
     
-    public static TipoLogradouroResponse toDto(
+    @Override
+    public TipoLogradouroResponse toDto(
             TipoLogradouro entity
     ) {
         TipoLogradouroResponse dto = new TipoLogradouroResponse(
@@ -38,23 +43,21 @@ public class TipoLogradouroMapper {
         return dto;
     }
     
-    public static List<TipoLogradouroResponse> listDto(
+    @Override
+    public List<TipoLogradouroResponse> toListDto(
             List<TipoLogradouro> list
     ) {
         return list.stream()
                 .map((entity) -> toDto(entity))
                 .collect(Collectors.toList());
     }
-    
-    public static List<TipoLogradouroResponse> entitylistToDto(
-            List<TipoLogradouro> list
-    ) {
-        List<TipoLogradouroResponse> l = new LinkedList();
-        for(int i = 0; i < list.size(); i++) {
-            TipoLogradouro e = list.get(i);
-            TipoLogradouroResponse dto = toDto(e);
-            l.add(dto);
-        }
-        return l;
+
+    @Override
+    public TipoLogradouro update(
+            TipoLogradouroRequest request, 
+            TipoLogradouro entity) {
+        entity.setNome(request.getNome());
+        entity.setSigla(request.getSigla());
+        return entity;
     }
 }
