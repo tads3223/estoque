@@ -30,7 +30,10 @@ INSERT INTO subgrupo_produto(id, nome, grupo_produto_id) VALUES
 INSERT INTO joined_base(id, nome) VALUES
 (1, 'Unidade'),
 (2, 'Pacote'),
-(3, 'Caixa');
+(3, 'Caixa'),
+(4, 'Weimar Gonçalves Torres'),
+(5, 'Campo Grande'),
+(6, 'Dourados');
 
 INSERT INTO unidade_medida (fracionado, id) VALUES
 (false, 1),
@@ -42,3 +45,12 @@ INSERT INTO elemento_base (id, nome, elemento_type) values
 (1, 'Zaeli', 'MARCA'),
 (2, 'Naviraí', 'MARCA'),
 (3, 'Frimeza', 'MARCA');
+
+INSERT INTO tipo_logradouro(id, nome, sigla) values
+(1, 'Avenida', 'Av'),
+(2, 'Rua', 'R');
+
+INSERT INTO logradouro (id, tipo_logradouro_id) values
+(4, 1),
+(5, 1),
+(6, 1);

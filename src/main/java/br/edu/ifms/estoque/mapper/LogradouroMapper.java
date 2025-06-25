@@ -50,7 +50,7 @@ public class LogradouroMapper implements IMapper<Logradouro, LogradouroResponse,
             TipoLogradouroRepository repository) {
         // Primeiro, recuperar o tipo logradouro
         var tipoLogradouro = repository
-                .findById(dto.getTipoLogradouroId())
+                .findById(dto.getTipoLogradouro().getId())
                 .orElseThrow(TipoLogradouroNotFoundException::new);
         // Depois, cria o objeto logradouro
         var logradouro = new Logradouro(
@@ -64,7 +64,7 @@ public class LogradouroMapper implements IMapper<Logradouro, LogradouroResponse,
     public Logradouro toEntity(LogradouroRequest request) {
         // Primeiro, cria o tipo de logradouro
         var tipoLogradouro = new TipoLogradouro(
-                request.getTipoLogradouroId(), null);
+                request.getTipoLogradouro().getId(), null);
         // Depois, cria o objeto logradouro
         var logradouro = new Logradouro(
                 null,
@@ -77,7 +77,7 @@ public class LogradouroMapper implements IMapper<Logradouro, LogradouroResponse,
     public Logradouro update(LogradouroRequest request, Logradouro entity) {
         // Primeiro, cria o tipo de logradouro
         var tipoLogradouro = new TipoLogradouro(
-                request.getTipoLogradouroId(), null);
+                request.getTipoLogradouro().getId(), null);
         entity.setNome(request.getNome());
         entity.setTipoLogradouro(tipoLogradouro);
         return entity;
@@ -89,7 +89,7 @@ public class LogradouroMapper implements IMapper<Logradouro, LogradouroResponse,
             TipoLogradouroRepository repository) {
         // Primeiro, recuperar o tipo logradouro
         var tipoLogradouro = repository
-                .findById(request.getTipoLogradouroId())
+                .findById(request.getTipoLogradouro().getId())
                 .orElseThrow(TipoLogradouroNotFoundException::new);
         entity.setNome(request.getNome());
         entity.setTipoLogradouro(tipoLogradouro);

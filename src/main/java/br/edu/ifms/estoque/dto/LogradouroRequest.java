@@ -13,17 +13,17 @@ import jakarta.validation.constraints.NotNull;
 public class LogradouroRequest extends DefaultRequest {
     
     @NotNull(message = "O campo TIPO DE LOGRADOURO não foi informado.")
-    private Long tipoLogradouroId;
+    private TipoLogradouroResponse tipoLogradouro;
 
     public LogradouroRequest() {
     }
 
-    public LogradouroRequest(String nome, Long tipoLogradouroId) {
+    public LogradouroRequest(String nome, TipoLogradouroResponse tipoLogradouro) {
         super(nome);
-        this.tipoLogradouroId = tipoLogradouroId;
+        this.tipoLogradouro = tipoLogradouro;
     }
 
-    public Long getTipoLogradouroId() {
-        return tipoLogradouroId;
+    public TipoLogradouroResponse getTipoLogradouro() {
+        return tipoLogradouro;
     }
 }
