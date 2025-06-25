@@ -46,6 +46,13 @@ public class MarcaMapper implements IMapper<Marca, MarcaResponse, MarcaRequest, 
         );
     }
 
+    public Marca toEntity(MarcaResponse response) {
+        return new Marca(
+                response.getId(),
+                response.getNome()
+        );
+    }
+    
     @Override
     public Marca update(MarcaRequest request, Marca entity) {
         entity.setNome(request.getNome());

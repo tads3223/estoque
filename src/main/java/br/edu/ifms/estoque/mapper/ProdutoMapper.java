@@ -13,7 +13,6 @@ import br.edu.ifms.estoque.model.Produto;
 import br.edu.ifms.estoque.repository.MarcaRepository;
 import br.edu.ifms.estoque.repository.SubgrupoProdutoRepository;
 import br.edu.ifms.estoque.repository.UnidadeMedidaRepository;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
@@ -23,10 +22,19 @@ import org.springframework.stereotype.Component;
  * @author 1513003
  */
 @Component
-public class ProdutoMapper {
+public class ProdutoMapper implements IMapper<Produto, ProdutoResponse, ProdutoRequest, ProdutoRequest> {
 
-    
-    
+    private final MarcaMapper marcaMapper;
+    private final SubgrupoProdutoMapper subgrupoMapper;
+    private final UnidadeMedidaMapper unidadeMedidaMapper;
+
+    public ProdutoMapper(MarcaMapper marcaMapper, SubgrupoProdutoMapper subgrupoMapper, UnidadeMedidaMapper unidadeMedidaMapper) {
+        this.marcaMapper = marcaMapper;
+        this.subgrupoMapper = subgrupoMapper;
+        this.unidadeMedidaMapper = unidadeMedidaMapper;
+    }
+
+    @Override
     public ProdutoResponse toDto(
             Produto entity
     ) {
@@ -41,21 +49,22 @@ public class ProdutoMapper {
         dto.setDataUltimaCompra(entity.getDataUltimaCompra());
 
         if (entity.getSubgrupo() != null) {
-            dto.setSubGrupo(SubgrupoProdutoMapper
+            dto.setSubGrupo(subgrupoMapper
                     .toDto(entity.getSubgrupo()));
         }
         if (entity.getUnidadeMedida() != null) {
-            dto.setUnidadeMedida(UnidadeMedidaMapper
+            dto.setUnidadeMedida(unidadeMedidaMapper
                     .toDto(entity.getUnidadeMedida()));
         }
         if (entity.getMarca() != null) {
-            dto.setMarca(MarcaMapper.toDto(entity.getMarca()));
+            dto.setMarca(marcaMapper.toDto(entity.getMarca()));
         }
 
         return dto;
     }
 
-    public static List<ProdutoResponse> listDto(
+    @Override
+    public List<ProdutoResponse> toListDto(
             List<Produto> list
     ) {
         return list.stream()
@@ -63,19 +72,7 @@ public class ProdutoMapper {
                 .collect(Collectors.toList());
     }
 
-    public static List<ProdutoResponse> entitylistToDto(
-            List<Produto> list
-    ) {
-        List<ProdutoResponse> l = new LinkedList();
-        for (int i = 0; i < list.size(); i++) {
-            Produto e = list.get(i);
-            ProdutoResponse dto = toDto(e);
-            l.add(dto);
-        }
-        return l;
-    }
-
-    public static Produto toEntity(
+    public Produto toEntity(
             ProdutoRequest dto,
             SubgrupoProdutoRepository subgrupoProdutoRepository,
             UnidadeMedidaRepository unidadeMedidaRepository,
@@ -103,6 +100,50 @@ public class ProdutoMapper {
             var marca = marcaRepository
                     .findById(dto.getMarca().getId())
                     .orElseThrow(MarcaNotFoundException::new);
+            entity.setMarca(marca);
+        }
+        return entity;
+    }
+
+    @Override
+    public Produto toEntity(ProdutoRequest request) {
+        var entity = new Produto(null, request.getNome());
+        entity.setDescricao(request.getDescricao());
+        entity.setEstoqueMinimo(request.getEstoqueMinimo());
+        if (request.getSubGrupo() != null) {
+            var subgrupo = subgrupoMapper.toEntity(request.getSubGrupo());
+            entity.setSubgrupo(subgrupo);
+        }
+
+        if (request.getUnidadeMedida() != null) {
+            var unidadeMedida = unidadeMedidaMapper.toEntity(request.getUnidadeMedida());
+            entity.setUnidadeMedida(unidadeMedida);
+        }
+
+        if (request.getMarca() != null) {
+            var marca = marcaMapper.toEntity(request.getMarca());
+            entity.setMarca(marca);
+        }
+        return entity;
+    }
+
+    @Override
+    public Produto update(ProdutoRequest request, Produto entity) {
+        entity.setNome(request.getNome());
+        entity.setDescricao(request.getDescricao());
+        entity.setEstoqueMinimo(request.getEstoqueMinimo());
+        if (request.getSubGrupo() != null) {
+            var subgrupo = subgrupoMapper.toEntity(request.getSubGrupo());
+            entity.setSubgrupo(subgrupo);
+        }
+
+        if (request.getUnidadeMedida() != null) {
+            var unidadeMedida = unidadeMedidaMapper.toEntity(request.getUnidadeMedida());
+            entity.setUnidadeMedida(unidadeMedida);
+        }
+
+        if (request.getMarca() != null) {
+            var marca = marcaMapper.toEntity(request.getMarca());
             entity.setMarca(marca);
         }
         return entity;

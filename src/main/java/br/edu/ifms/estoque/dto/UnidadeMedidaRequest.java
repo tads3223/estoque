@@ -8,20 +8,19 @@ package br.edu.ifms.estoque.dto;
  *
  * @author 1513003
  */
-public class UnidadeMedidaResponse extends DefaultResponse {
+public class UnidadeMedidaRequest extends DefaultRequest {
 
     private Boolean fracionado;
     
-    public UnidadeMedidaResponse() {
+    public UnidadeMedidaRequest() {
     }
 
-    public UnidadeMedidaResponse(Long id, String nome, Boolean fracionado) {
-        super(id, nome);
+    public UnidadeMedidaRequest(String nome, Boolean fracionado) {
+        super(nome);
         this.fracionado = fracionado;
     }
 
     public Boolean getFracionado() {
         return fracionado;
-    }
-    
+    } 
 }

@@ -8,19 +8,20 @@ package br.edu.ifms.estoque.dto;
  *
  * @author 1513003
  */
-public class SubgrupoProdutoResponse extends DefaultResponse {
-    
-    private SubgrupoParent grupoProduto;
+public class SubgrupoProdutoRequest extends DefaultRequest {
 
-    public SubgrupoProdutoResponse() {
+    private SubgrupoParent grupoProduto;
+    
+    public SubgrupoProdutoRequest() {
     }
 
-    public SubgrupoProdutoResponse(Long id, String nome, SubgrupoParent grupoProduto) {
-        super(id, nome);
+    public SubgrupoProdutoRequest(String nome, SubgrupoParent grupoProduto) {
+        super(nome);
         this.grupoProduto = grupoProduto;
     }
 
     public SubgrupoParent getGrupoProduto() {
         return grupoProduto;
     }
+    
 }

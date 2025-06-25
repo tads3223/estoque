@@ -31,36 +31,38 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/produto")
 public class ProdutoController {
 
-    @Autowired
-    private ProdutoRepository repository;
-    
-    @Autowired
-    private SubgrupoProdutoRepository subgrupoRepository;
-    
-    @Autowired
-    private UnidadeMedidaRepository unidadeMedidaRepository;
-    
-    @Autowired
-    private MarcaRepository marcaRepository;
+    private final ProdutoRepository repository;
+    private final SubgrupoProdutoRepository subgrupoRepository;
+    private final UnidadeMedidaRepository unidadeMedidaRepository;
+    private final MarcaRepository marcaRepository;
+    private final ProdutoMapper mapper;
+
+    public ProdutoController(ProdutoRepository repository, SubgrupoProdutoRepository subgrupoRepository, UnidadeMedidaRepository unidadeMedidaRepository, MarcaRepository marcaRepository, ProdutoMapper mapper) {
+        this.repository = repository;
+        this.subgrupoRepository = subgrupoRepository;
+        this.unidadeMedidaRepository = unidadeMedidaRepository;
+        this.marcaRepository = marcaRepository;
+        this.mapper = mapper;
+    }
     
     @Transactional
     @PostMapping
     public ProdutoResponse create(
             @RequestBody @Valid ProdutoRequest request
     ) {
-        var entity = ProdutoMapper
+        var entity = mapper
                 .toEntity(request, subgrupoRepository,
                         unidadeMedidaRepository, marcaRepository);
         // Enfim, salva o objeto no banco de dados
         var saved = repository.save(entity);
-        var dto = ProdutoMapper.toDto(saved);
+        var dto = mapper.toDto(saved);
         return dto;
     }
     
     @GetMapping
     public List<ProdutoResponse> list() {
         List<Produto> l = repository.findAll();
-        return ProdutoMapper.listDto(l);
+        return mapper.toListDto(l);
     }
     
     @GetMapping("/{id}")

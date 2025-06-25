@@ -5,17 +5,19 @@
 package br.edu.ifms.estoque.mapper;
 
 import br.edu.ifms.estoque.dto.SubgrupoParent;
+import br.edu.ifms.estoque.dto.SubgrupoProdutoRequest;
 import br.edu.ifms.estoque.dto.SubgrupoProdutoResponse;
 import br.edu.ifms.estoque.model.SubgrupoProduto;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author 1513003
  */
-public class SubgrupoProdutoMapper {
+@Component
+public class SubgrupoProdutoMapper implements IMapper<SubgrupoProduto, SubgrupoProdutoResponse, SubgrupoProdutoRequest, SubgrupoProdutoRequest> {
 
     public static SubgrupoParent parentToDto(
             SubgrupoProduto entity
@@ -30,7 +32,8 @@ public class SubgrupoProdutoMapper {
         return null;
     }
 
-    public static SubgrupoProdutoResponse toDto(
+    @Override
+    public SubgrupoProdutoResponse toDto(
             SubgrupoProduto entity
     ) {
         SubgrupoProdutoResponse dto = new SubgrupoProdutoResponse(
@@ -41,7 +44,8 @@ public class SubgrupoProdutoMapper {
         return dto;
     }
 
-    public static List<SubgrupoProdutoResponse> listDto(
+    @Override
+    public List<SubgrupoProdutoResponse> toListDto(
             List<SubgrupoProduto> list
     ) {
         return list.stream()
@@ -49,15 +53,47 @@ public class SubgrupoProdutoMapper {
                 .collect(Collectors.toList());
     }
 
-    public static List<SubgrupoProdutoResponse> entitylistToDto(
-            List<SubgrupoProduto> list
-    ) {
-        List<SubgrupoProdutoResponse> l = new LinkedList();
-        for (int i = 0; i < list.size(); i++) {
-            SubgrupoProduto e = list.get(i);
-            SubgrupoProdutoResponse dto = toDto(e);
-            l.add(dto);
+    @Override
+    public SubgrupoProduto toEntity(SubgrupoProdutoRequest request) {
+        var subgrupo = new SubgrupoProduto();
+        subgrupo.setNome(request.getNome());
+        if (request.getGrupoProduto() != null) {
+            var grupoProduto = new SubgrupoProduto(
+                    request.getGrupoProduto().getId(),
+                    request.getGrupoProduto().getNome(),
+                    null
+            );
+            subgrupo.setGrupoProduto(grupoProduto);
         }
-        return l;
+        return subgrupo;
+    }
+    
+    public SubgrupoProduto toEntity(SubgrupoProdutoResponse response) {
+        var subgrupo = new SubgrupoProduto();
+        subgrupo.setId(response.getId());
+        subgrupo.setNome(response.getNome());
+        if (response.getGrupoProduto() != null) {
+            var grupoProduto = new SubgrupoProduto(
+                    response.getGrupoProduto().getId(),
+                    response.getGrupoProduto().getNome(),
+                    null
+            );
+            subgrupo.setGrupoProduto(grupoProduto);
+        }
+        return subgrupo;
+    }
+
+    @Override
+    public SubgrupoProduto update(SubgrupoProdutoRequest request, SubgrupoProduto entity) {
+        entity.setNome(request.getNome());
+        if (request.getGrupoProduto() != null) {
+            var grupoProduto = new SubgrupoProduto(
+                    request.getGrupoProduto().getId(),
+                    request.getGrupoProduto().getNome(),
+                    null
+            );
+            entity.setGrupoProduto(grupoProduto);
+        }
+        return entity;
     }
 }

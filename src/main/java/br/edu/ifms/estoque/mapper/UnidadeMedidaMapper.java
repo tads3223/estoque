@@ -4,45 +4,62 @@
  */
 package br.edu.ifms.estoque.mapper;
 
+import br.edu.ifms.estoque.dto.UnidadeMedidaRequest;
 import br.edu.ifms.estoque.dto.UnidadeMedidaResponse;
 import br.edu.ifms.estoque.model.UnidadeMedida;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author 1513003
  */
-public class UnidadeMedidaMapper {
+@Component
+public class UnidadeMedidaMapper implements IMapper<UnidadeMedida, UnidadeMedidaResponse, UnidadeMedidaRequest, UnidadeMedidaRequest> {
     
-    public static UnidadeMedidaResponse toDto(
+    @Override
+    public UnidadeMedidaResponse toDto(
             UnidadeMedida entity
     ) {
         UnidadeMedidaResponse dto = new UnidadeMedidaResponse(
                 entity.getId(),
-                entity.getNome()
+                entity.getNome(),
+                entity.getFracionado()
         );
         return dto;
     }
     
-    public static List<UnidadeMedidaResponse> listDto(
+    @Override
+    public List<UnidadeMedidaResponse> toListDto(
             List<UnidadeMedida> list
     ) {
         return list.stream()
                 .map((entity) -> toDto(entity))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public UnidadeMedida toEntity(UnidadeMedidaRequest request) {
+        return new UnidadeMedida(
+                null,
+                request.getNome(),
+                request.getFracionado()
+        );
+    }
     
-    public static List<UnidadeMedidaResponse> entitylistToDto(
-            List<UnidadeMedida> list
-    ) {
-        List<UnidadeMedidaResponse> l = new LinkedList();
-        for(int i = 0; i < list.size(); i++) {
-            UnidadeMedida e = list.get(i);
-            UnidadeMedidaResponse dto = toDto(e);
-            l.add(dto);
-        }
-        return l;
+    public UnidadeMedida toEntity(UnidadeMedidaResponse response) {
+        return new UnidadeMedida(
+                response.getId(),
+                response.getNome(),
+                response.getFracionado()
+        );
+    }
+
+    @Override
+    public UnidadeMedida update(UnidadeMedidaRequest request, UnidadeMedida entity) {
+        entity.setNome(request.getNome());
+        entity.setFracionado(request.getFracionado());
+        return entity;
     }
 }
