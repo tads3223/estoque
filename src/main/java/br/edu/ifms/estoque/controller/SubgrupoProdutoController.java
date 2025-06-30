@@ -4,10 +4,10 @@
  */
 package br.edu.ifms.estoque.controller;
 
-import br.edu.ifms.estoque.dto.BairroResponse;
-import br.edu.ifms.estoque.dto.BairroRequest;
-import br.edu.ifms.estoque.mapper.BairroMapper;
-import br.edu.ifms.estoque.service.BairroService;
+import br.edu.ifms.estoque.dto.SubgrupoProdutoResponse;
+import br.edu.ifms.estoque.dto.SubgrupoProdutoRequest;
+import br.edu.ifms.estoque.mapper.SubgrupoProdutoMapper;
+import br.edu.ifms.estoque.service.SubgrupoProdutoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -34,27 +34,27 @@ import org.springframework.web.util.UriComponentsBuilder;
  *
  * @author 1513003
  */
-@Tag(name = "bairro", description = "Recurso de controle de Bairros")
+@Tag(name = "subgrupo", description = "Recurso de controle de subgrupo de produtos")
 @RestController
-@RequestMapping("/bairro")
-public class BairroController implements IController<Long, BairroResponse, BairroRequest> {
+@RequestMapping("/subgrupo")
+public class SubgrupoProdutoController implements IController<Long, SubgrupoProdutoResponse, SubgrupoProdutoRequest> {
 
-    private final BairroService service;
-    private final BairroMapper mapper;
+    private final SubgrupoProdutoService service;
+    private final SubgrupoProdutoMapper mapper;
 
-    public BairroController(BairroService service, BairroMapper mapper) {
+    public SubgrupoProdutoController(SubgrupoProdutoService service, SubgrupoProdutoMapper mapper) {
         this.service = service;
         this.mapper = mapper;
     }
 
-    @Operation(summary = "Cria um bairro")
+    @Operation(summary = "Cria um subgrupo de produto")
     @ApiResponses(value = {
         @ApiResponse(
                 responseCode = "201",
-                description = "Bairro criado com sucesso",
+                description = "Subgrupo de produto criado com sucesso",
                 content = {
                     @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = BairroRequest.class))
+                            schema = @Schema(implementation = SubgrupoProdutoRequest.class))
                 }
         ),
         @ApiResponse(
@@ -63,27 +63,31 @@ public class BairroController implements IController<Long, BairroResponse, Bairr
         ),
         @ApiResponse(
                 responseCode = "409",
-                description = "Falha na tentativa de criação de um bairro. Tente novamente"
+                description = "Falha na tentativa de criação de um subgrupo de produto. Tente novamente"
         )
     })
     @PostMapping
     @Override
-    public ResponseEntity<BairroResponse> create(
+    public ResponseEntity<SubgrupoProdutoResponse> create(
             @io.swagger.v3.oas.annotations.parameters.RequestBody(
-                    description = "Bairro a ser criado",
+                    description = "Subgrupo de produto a ser criado",
                     required = true,
                     content = @Content(
                             mediaType = "application/json",
-                            schema = @Schema(implementation = BairroRequest.class),
+                            schema = @Schema(implementation = SubgrupoProdutoRequest.class),
                             examples = @ExampleObject(value = 
                                     """
                                     {
-                                        "nome": "Nome do novo bairro"
+                                        "nome": "Nome do novo subgrupo",
+                                        "grupoProduto": {
+                                            "id": "ID do subgrupo de produto superior a ser vinculado",
+                                            "nome": "Nome do subgrupo que será vinculado"
+                                        }
                                     }
                                     """)
                     )
             )
-            @RequestBody @Valid BairroRequest dto,
+            @RequestBody @Valid SubgrupoProdutoRequest dto,
             UriComponentsBuilder uriBuilder
     ) {
         var entity = service.create(dto);
@@ -91,68 +95,68 @@ public class BairroController implements IController<Long, BairroResponse, Bairr
                 .path("/{id}")
                 .buildAndExpand(entity.getId())
                 .toUri();
-        var bairroResponse = mapper.toDto(entity);
-        return createdResponse(bairroResponse, uri);
+        var subgrupoResponse = mapper.toDto(entity);
+        return createdResponse(subgrupoResponse, uri);
     }
 
-    @Operation(summary = "Recupera a lista de bairros")
+    @Operation(summary = "Recupera a lista de subgrupos de produtos")
     @ApiResponses(value = {
         @ApiResponse(
                 responseCode = "200",
-                description = "Lista de bairros encontrados",
+                description = "Lista de subgrupos de produtos encontrados",
                 content = @Content
         )
     })
     @GetMapping
     @Override
-    public ResponseEntity<List<BairroResponse>> list() {
+    public ResponseEntity<List<SubgrupoProdutoResponse>> list() {
         var listDto = mapper.toListDto(service.list());
         return okListResponse(listDto);
     }
 
-    @Operation(summary = "Recupera um bairro pela chave primária")
+    @Operation(summary = "Recupera um subgrupo de produto pela chave primária")
     @ApiResponses(value = {
         @ApiResponse(
                 responseCode = "200",
-                description = "Bairro encontrado",
+                description = "Subgrupo de produto encontrado",
                 content = {
                     @Content(
                             mediaType = "application/json",
-                            schema = @Schema(implementation = BairroResponse.class)
+                            schema = @Schema(implementation = SubgrupoProdutoResponse.class)
                     )
                 }
         ),
         @ApiResponse(
                 responseCode = "404",
-                description = "Bairro não encontrado",
+                description = "Subgrupo de produto não encontrado",
                 content = @Content
         )
     })
     @GetMapping("/{id}")
     @Override
-    public ResponseEntity<BairroResponse> findById(
-            @Parameter(description = "ID do Bairro a ser buscado")
+    public ResponseEntity<SubgrupoProdutoResponse> findById(
+            @Parameter(description = "ID do Subgrupo de produto a ser buscado")
             @PathVariable Long id
     ) {
         var dto = mapper.toDto(service.findBy(id));
         return okResponse(dto);
     }
 
-    @Operation(summary = "Deleta um bairro pela chave primária")
+    @Operation(summary = "Deleta um subgrupo de produto pela chave primária")
     @ApiResponses(value = {
         @ApiResponse(
                 responseCode = "204",
-                description = "Bairro removido com sucesso",
+                description = "Subgrupo de produto removido com sucesso",
                 content = @Content
         ),
         @ApiResponse(
                 responseCode = "404",
-                description = "Bairro não encontrado",
+                description = "Subgrupo de produto não encontrado",
                 content = @Content
         ),
         @ApiResponse(
                 responseCode = "409",
-                description = "Não é possível deletar um bairro."
+                description = "Não é possível deletar um subgrupo de produto."
         )
     })
     @DeleteMapping("/{id}")
@@ -162,24 +166,24 @@ public class BairroController implements IController<Long, BairroResponse, Bairr
         return voidResponse();
     }
 
-    @Operation(summary = "Alterar os dados de um bairro pela chave primária")
+    @Operation(summary = "Altera os dados de um subgrupo de produto pela chave primária")
     @ApiResponses(value = {
         @ApiResponse(
                 responseCode = "200",
-                description = "Dados do bairro alterados com sucesso",
+                description = "Dados do subgrupo de produto alterados com sucesso",
                 content = @Content
         ),
         @ApiResponse(
                 responseCode = "404",
-                description = "Bairro não encontrado",
+                description = "Subgrupo de produto não encontrado",
                 content = @Content
         )
     })
     @PutMapping("/{id}")
     @Override
-    public ResponseEntity<BairroResponse> update(
+    public ResponseEntity<SubgrupoProdutoResponse> update(
             @PathVariable Long id,
-            @RequestBody @Valid BairroRequest dto
+            @RequestBody @Valid SubgrupoProdutoRequest dto
     ) {
         var entity = service.update(id, dto);
         var response = mapper.toDto(entity);

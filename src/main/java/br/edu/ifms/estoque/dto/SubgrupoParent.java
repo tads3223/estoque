@@ -8,23 +8,13 @@ package br.edu.ifms.estoque.dto;
  *
  * @author 1513003
  */
-public class SubgrupoParent {
-    private Long id;
-    private String nome;
+public class SubgrupoParent extends DefaultResponse {
 
     public SubgrupoParent() {
     }
 
     public SubgrupoParent(Long id, String nome) {
-        this.id = id;
-        this.nome = nome;
+        super(id, nome);
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
 }
