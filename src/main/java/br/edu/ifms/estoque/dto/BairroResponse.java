@@ -8,13 +8,13 @@ package br.edu.ifms.estoque.dto;
  *
  * @author 1513003
  */
-public class BairroRequest extends DefaultRequest {
+public class BairroResponse extends DefaultResponse {
 
-    public BairroRequest() {
+    public BairroResponse() {
     }
 
-    public BairroRequest(String nome) {
-        super(nome);
+    public BairroResponse(Long id, String nome) {
+        super(id, nome);
     }
     
 }

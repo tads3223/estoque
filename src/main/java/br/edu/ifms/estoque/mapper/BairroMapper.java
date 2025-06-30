@@ -4,9 +4,9 @@
  */
 package br.edu.ifms.estoque.mapper;
 
-import br.edu.ifms.estoque.dto.CargoRequest;
-import br.edu.ifms.estoque.dto.CargoResponse;
-import br.edu.ifms.estoque.model.Cargo;
+import br.edu.ifms.estoque.dto.BairroRequest;
+import br.edu.ifms.estoque.dto.BairroResponse;
+import br.edu.ifms.estoque.model.Bairro;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
@@ -16,30 +16,30 @@ import org.springframework.stereotype.Component;
  * @author 1513003
  */
 @Component
-public class CargoMapper implements 
-        IMapper<Cargo, CargoResponse, CargoRequest, CargoRequest> {
+public class BairroMapper implements 
+        IMapper<Bairro, BairroResponse, BairroRequest, BairroRequest> {
 
     @Override
-    public CargoResponse toDto(Cargo entity) {
-        return new CargoResponse(
+    public BairroResponse toDto(Bairro entity) {
+        return new BairroResponse(
                 entity.getId(), 
                 entity.getNome()
         );
     }
 
     @Override
-    public Cargo toEntity(CargoRequest request) {
-        return new Cargo(null, request.getNome());
+    public Bairro toEntity(BairroRequest request) {
+        return new Bairro(null, request.getNome());
     }
 
     @Override
-    public Cargo update(CargoRequest request, Cargo entity) {
+    public Bairro update(BairroRequest request, Bairro entity) {
         entity.setNome(request.getNome());
         return entity;
     }
 
     @Override
-    public List<CargoResponse> toListDto(List<Cargo> items) {
+    public List<BairroResponse> toListDto(List<Bairro> items) {
         return items.stream()
                 .map(item -> toDto(item))
                 .collect(Collectors.toList());

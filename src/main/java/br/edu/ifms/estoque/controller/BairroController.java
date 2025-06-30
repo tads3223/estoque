@@ -4,17 +4,21 @@
  */
 package br.edu.ifms.estoque.controller;
 
-import br.edu.ifms.estoque.dto.BairroReponse;
+import br.edu.ifms.estoque.dto.BairroResponse;
 import br.edu.ifms.estoque.dto.BairroRequest;
-import br.edu.ifms.estoque.model.Bairro;
-import br.edu.ifms.estoque.repository.BairroRepository;
+import br.edu.ifms.estoque.mapper.BairroMapper;
+import br.edu.ifms.estoque.service.BairroService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import java.net.URI;
 import java.util.List;
-import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,93 +26,101 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 /**
  *
  * @author 1513003
  */
+@Tag(name="bairro", description = "Recurso de controle de Bairros")
 @RestController
 @RequestMapping("/bairro")
-public class BairroController {
+public class BairroController implements IController<Long, BairroResponse, BairroRequest> {
 
-    @Autowired
-    private BairroRepository repository;
+    private final BairroService service;
+    private final BairroMapper mapper;
 
-    @Transactional
+    public BairroController(BairroService service, BairroMapper mapper) {
+        this.service = service;
+        this.mapper = mapper;
+    }
+
+    
     @PostMapping
-    public ResponseEntity<BairroReponse> create(
-            @RequestBody @Valid BairroRequest dto
+    @Override
+    public ResponseEntity<BairroResponse> create(
+            @RequestBody @Valid BairroRequest dto,
+            UriComponentsBuilder uriBuilder
     ) { 
-        Bairro bairro = new Bairro(null, dto.getNome());
-        repository.save(bairro);
-        
-        var bairroResponse = new BairroReponse(
-                bairro.getId(), 
-                bairro.getNome()
-        );
-        
-        return new ResponseEntity(
-                bairroResponse, 
-                HttpStatus.OK
-        );
+        var entity = service.create(dto);
+        URI uri = uriBuilder
+                .path("/{id}")
+                .buildAndExpand(entity.getId())
+                .toUri();
+        var bairroResponse = mapper.toDto(entity);
+        return createdResponse(bairroResponse, uri);
     }
 
+    @Operation(summary = "Recupera a lista de Bairros")
+    @ApiResponses(value = {
+        @ApiResponse(
+                responseCode = "200",
+                description = "Lista de bairros encontrados",
+                content = @Content
+        )
+    })
     @GetMapping
-    public List<Bairro> list() {
-        var lista = repository.findAll();
-        return lista;
+    @Override
+    public ResponseEntity<List<BairroResponse>> list() {
+        var listDto = mapper.toListDto(service.list());
+        return okListResponse(listDto);
     }
 
-    /**
-     * Registro da busca em uma lista ao invés de usar o STREAM.
-     *
-     * @param id
-     * @return
-     */
+    @Operation(summary = "Recupera um Bairro pela chave primária")
+    @ApiResponses(value = {
+        @ApiResponse(
+                responseCode = "200",
+                description = "Bairro encontrado",
+                content = {
+                    @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = BairroResponse.class)
+                    )
+                }
+        ),
+        @ApiResponse(
+                responseCode = "404",
+                description = "Bairro não encontrado",
+                content = @Content
+        )
+    })
     @GetMapping("/{id}")
-    public Bairro findBy(
+    @Override
+    public ResponseEntity<BairroResponse> findById(
+            @Parameter(description = "ID do Bairro a ser buscado")
             @PathVariable Long id
     ) {
-        var optional = find(id);
-        if (optional.isPresent()) {
-            return optional.get();
-        }
-        return null;
-    }
-
-    public Optional<Bairro> find(
-            Long id
-    ) {
-        Optional<Bairro> optional = repository.findById(id);
-        return optional;
+        var dto = mapper.toDto(service.findBy(id));
+        return okResponse(dto);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(
-            @PathVariable(name = "id") Long id
-    ) {
-        var optional = find(id);
-        if (optional.isPresent()) {
-            Bairro tipoLogradouro = optional.get();
-            repository.delete(tipoLogradouro);
-        }
+    @Override
+    public ResponseEntity<Void> delete(@PathVariable(name = "id") Long id) {
+        service.deleteById(id);
+        return voidResponse();
     }
 
-    @Transactional
     @PutMapping("/{id}")
-    public Bairro update(
+    @Override
+    public ResponseEntity<BairroResponse> update(
             @PathVariable Long id,
-            @RequestParam(name = "nome", required = true) String nome
+            @RequestBody @Valid BairroRequest dto
     ) {
-        var optional = find(id);
-        if (optional.isPresent()) {
-            var tipoLogradouro = optional.get();
-            tipoLogradouro.setNome(nome);
-            return tipoLogradouro;
-        }
-        return null;
+        var entity = service.update(id, dto);
+        var response = mapper.toDto(entity);
+        return okResponse(response);
     }
 
 }
