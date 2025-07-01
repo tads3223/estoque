@@ -22,10 +22,13 @@ public class CorsConfiguration {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // Apply to all paths
-                        .allowedOrigins("http://localhost:3000") // Specify allowed origins
+                        .allowedOrigins("*") // Specify allowed origins
                         .allowedMethods("GET", "POST", "PUT", "DELETE") // Allowed HTTP methods
                         .allowedHeaders("*") // Allowed request headers
-                        .allowCredentials(true) // Allow sending credentials (cookies, auth headers)
+                        /**
+                         * Allow Credentials deve ser falso quando AllowedOrigins for um coringa '*'
+                         */
+                        .allowCredentials(false) // Allow sending credentials (cookies, auth headers)
                         .maxAge(3600); // Pre-flight request cache duration
             }
         };

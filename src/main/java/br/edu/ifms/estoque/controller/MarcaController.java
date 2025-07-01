@@ -6,11 +6,12 @@ package br.edu.ifms.estoque.controller;
 
 import br.edu.ifms.estoque.dto.MarcaRequest;
 import br.edu.ifms.estoque.dto.MarcaResponse;
-import br.edu.ifms.estoque.exceptions.MarcaNotFoundException;
 import br.edu.ifms.estoque.mapper.MarcaMapper;
-import br.edu.ifms.estoque.model.Marca;
-import br.edu.ifms.estoque.repository.MarcaRepository;
+import br.edu.ifms.estoque.service.MarcaService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import java.net.URI;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,36 +30,46 @@ import org.springframework.web.util.UriComponentsBuilder;
  *
  * @author 1513003
  */
+@Tag(name = "marca", description = "Recurso de controle de marcas de produtos")
 @RestController
 @RequestMapping("/marca")
 public class MarcaController {
 
-    private final MarcaRepository repository;
+    private final MarcaService service;
     private final MarcaMapper mapper;
 
-    public MarcaController(MarcaRepository repository, MarcaMapper mapper) {
-        this.repository = repository;
+    public MarcaController(
+            MarcaService service, 
+            MarcaMapper mapper) {
+        this.service = service;
         this.mapper = mapper;
     }
     
-    @Transactional
+    @Operation(summary = "Recurso utilizado para cadastrar uma marca de produto no sistema")
     @PostMapping
     public ResponseEntity<MarcaResponse> create(
             @RequestBody @Valid MarcaRequest request,
             UriComponentsBuilder uriBuilder
     ) {
-        var marca = mapper.toEntity(request);
-        var saved = repository.save(marca);
+        var saved = service.create(request);
+        URI uri = uriBuilder
+                .path("/marca/{id}")
+                .buildAndExpand(saved.getId())
+                .toUri();
         
         return ResponseEntity
-                .status(HttpStatus.OK)
+                .created(uri)
                 .body(mapper.toDto(saved));
     }
 
+    @Operation(summary = "Recurso responsável por recuperar uma lista de marcas de produtos cadastradas no sistema")
     @GetMapping
-    public List<MarcaResponse> list() {
-        var lista = repository.findAll();
-        return mapper.toListDto(lista);
+    public ResponseEntity<List<MarcaResponse>> list() {
+        var lista = service.list();
+        var listDto = mapper.toListDto(lista);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(listDto);
     }
 
     /**
@@ -71,26 +82,18 @@ public class MarcaController {
     public ResponseEntity<MarcaResponse> findBy(
             @PathVariable Long id
     ) {
-        var marca = find(id);
+        var marca = service.findBy(id);
         
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(mapper.toDto(marca));
     }
 
-    public Marca find(
-            Long id
-    ) {
-        return repository.findById(id)
-                .orElseThrow(MarcaNotFoundException::new);
-    }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(
             @PathVariable(name = "id") Long id
     ) {
-        var marca = find(id);
-        repository.delete(marca);
+        service.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
@@ -100,8 +103,7 @@ public class MarcaController {
             @PathVariable Long id,
             @RequestBody @Valid MarcaRequest request
     ) {
-        var entity = find(id);
-        var updated = mapper.update(request, entity);
+        var updated = service.update(id, request);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(mapper.toDto(updated));
