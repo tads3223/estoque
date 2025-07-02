@@ -5,12 +5,12 @@
 package br.edu.ifms.estoque.service;
 
 import br.edu.ifms.estoque.dto.MarcaRequest;
+import br.edu.ifms.estoque.dto.MarcaResponse;
 import br.edu.ifms.estoque.exceptions.MarcaNotFoundException;
 import br.edu.ifms.estoque.mapper.MarcaMapper;
 import br.edu.ifms.estoque.model.Marca;
 import br.edu.ifms.estoque.repository.MarcaRepository;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 public class MarcaService implements
-        IService<Marca, Long, MarcaRequest, MarcaRequest> {
+        IService<Marca, Long, MarcaResponse, MarcaRequest, MarcaRequest> {
 
     private final MarcaRepository repository;
     private final MarcaMapper mapper;
@@ -56,21 +56,6 @@ public class MarcaService implements
     public Marca findBy(Long id) {
         return repository.findById(id)
                 .orElseThrow(MarcaNotFoundException::new);
-//                .orElseThrow(() -> {
-//                    var ex = new MarcaNotFoundException();
-//                    return ex;
-//                });
-//        Optional<Marca> optional = repository.findById(id);
-//        if (optional.isPresent()) {
-//            Marca marca = optional.get();
-//            return marca;
-//        }
-//        throw new MarcaNotFoundException();
-
-//            Marca marca = repository.getReferenceById(id);
-//            if (marca != null) {
-//                return marca;
-//            }
     }
 
     @Override

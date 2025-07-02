@@ -12,7 +12,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
-import java.io.Serializable;
 
 /**
  *
@@ -21,7 +20,7 @@ import java.io.Serializable;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "classe_pessoa")
-public abstract class Pessoa implements Serializable {
+public abstract class Pessoa implements IBaseClass {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

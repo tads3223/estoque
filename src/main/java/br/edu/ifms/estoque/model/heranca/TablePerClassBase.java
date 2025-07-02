@@ -10,7 +10,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
-import java.io.Serializable;
 
 /**
  *
@@ -18,7 +17,7 @@ import java.io.Serializable;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class TablePerClassBase implements Serializable {
+public abstract class TablePerClassBase implements IBaseClass {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "tablePerClassBase")
     private Long id;

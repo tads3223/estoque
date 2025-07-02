@@ -4,10 +4,10 @@
  */
 package br.edu.ifms.estoque.controller;
 
-import br.edu.ifms.estoque.dto.SubgrupoProdutoResponse;
-import br.edu.ifms.estoque.dto.SubgrupoProdutoRequest;
-import br.edu.ifms.estoque.mapper.SubgrupoProdutoMapper;
-import br.edu.ifms.estoque.service.SubgrupoProdutoService;
+import br.edu.ifms.estoque.dto.UnidadeMedidaResponse;
+import br.edu.ifms.estoque.dto.UnidadeMedidaRequest;
+import br.edu.ifms.estoque.mapper.UnidadeMedidaMapper;
+import br.edu.ifms.estoque.service.UnidadeMedidaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -34,28 +34,28 @@ import org.springframework.web.util.UriComponentsBuilder;
  *
  * @author 1513003
  */
-@Tag(name = "subgrupo", description = "Recurso de controle de subgrupo de produtos")
+@Tag(name = "unidade_medida", description = "Recurso de controle de Unidades de Medidas")
 @RestController
-@RequestMapping("/subgrupo")
-public class SubgrupoProdutoController 
-        implements IController<Long, SubgrupoProdutoResponse, SubgrupoProdutoRequest, SubgrupoProdutoRequest> {
+@RequestMapping("/unidade-medida")
+public class UnidadeMedidaController 
+        implements IController<Long, UnidadeMedidaResponse, UnidadeMedidaRequest, UnidadeMedidaRequest> {
 
-    private final SubgrupoProdutoService service;
-    private final SubgrupoProdutoMapper mapper;
+    private final UnidadeMedidaService service;
+    private final UnidadeMedidaMapper mapper;
 
-    public SubgrupoProdutoController(SubgrupoProdutoService service, SubgrupoProdutoMapper mapper) {
+    public UnidadeMedidaController(UnidadeMedidaService service, UnidadeMedidaMapper mapper) {
         this.service = service;
         this.mapper = mapper;
     }
 
-    @Operation(summary = "Cria um subgrupo de produto")
+    @Operation(summary = "Cria uma unidade de medida")
     @ApiResponses(value = {
         @ApiResponse(
                 responseCode = "201",
-                description = "Subgrupo de produto criado com sucesso",
+                description = "Unidade de Medida criado com sucesso",
                 content = {
                     @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = SubgrupoProdutoRequest.class))
+                            schema = @Schema(implementation = UnidadeMedidaRequest.class))
                 }
         ),
         @ApiResponse(
@@ -64,31 +64,27 @@ public class SubgrupoProdutoController
         ),
         @ApiResponse(
                 responseCode = "409",
-                description = "Falha na tentativa de criação de um subgrupo de produto. Tente novamente"
+                description = "Falha na tentativa de criação de uma unidade de medida. Tente novamente"
         )
     })
     @PostMapping
     @Override
-    public ResponseEntity<SubgrupoProdutoResponse> create(
+    public ResponseEntity<UnidadeMedidaResponse> create(
             @io.swagger.v3.oas.annotations.parameters.RequestBody(
-                    description = "Subgrupo de produto a ser criado",
+                    description = "UnidadeMedida a ser criado",
                     required = true,
                     content = @Content(
                             mediaType = "application/json",
-                            schema = @Schema(implementation = SubgrupoProdutoRequest.class),
+                            schema = @Schema(implementation = UnidadeMedidaRequest.class),
                             examples = @ExampleObject(value = 
                                     """
                                     {
-                                        "nome": "Nome do novo subgrupo",
-                                        "grupoProduto": {
-                                            "id": "ID do subgrupo de produto superior a ser vinculado",
-                                            "nome": "Nome do subgrupo que será vinculado"
-                                        }
+                                        "nome": "Nome da nova unidade de medida"
                                     }
                                     """)
                     )
             )
-            @RequestBody @Valid SubgrupoProdutoRequest dto,
+            @RequestBody @Valid UnidadeMedidaRequest dto,
             UriComponentsBuilder uriBuilder
     ) {
         var entity = service.create(dto);
@@ -96,68 +92,68 @@ public class SubgrupoProdutoController
                 .path("/{id}")
                 .buildAndExpand(entity.getId())
                 .toUri();
-        var subgrupoResponse = mapper.toDto(entity);
-        return createdResponse(subgrupoResponse, uri);
+        var unidadeMedidaResponse = mapper.toDto(entity);
+        return createdResponse(unidadeMedidaResponse, uri);
     }
 
-    @Operation(summary = "Recupera a lista de subgrupos de produtos")
+    @Operation(summary = "Recupera a lista de unidades de medidas")
     @ApiResponses(value = {
         @ApiResponse(
                 responseCode = "200",
-                description = "Lista de subgrupos de produtos encontrados",
+                description = "Lista de unidades de medidas encontrados",
                 content = @Content
         )
     })
     @GetMapping
     @Override
-    public ResponseEntity<List<SubgrupoProdutoResponse>> list() {
+    public ResponseEntity<List<UnidadeMedidaResponse>> list() {
         var listDto = mapper.toListDto(service.list());
         return okListResponse(listDto);
     }
 
-    @Operation(summary = "Recupera um subgrupo de produto pela chave primária")
+    @Operation(summary = "Recupera uma unidade de medida pela chave primária")
     @ApiResponses(value = {
         @ApiResponse(
                 responseCode = "200",
-                description = "Subgrupo de produto encontrado",
+                description = "Unidade de medida encontrada",
                 content = {
                     @Content(
                             mediaType = "application/json",
-                            schema = @Schema(implementation = SubgrupoProdutoResponse.class)
+                            schema = @Schema(implementation = UnidadeMedidaResponse.class)
                     )
                 }
         ),
         @ApiResponse(
                 responseCode = "404",
-                description = "Subgrupo de produto não encontrado",
+                description = "Unidade de medida não encontrada",
                 content = @Content
         )
     })
     @GetMapping("/{id}")
     @Override
-    public ResponseEntity<SubgrupoProdutoResponse> findById(
-            @Parameter(description = "ID do Subgrupo de produto a ser buscado")
+    public ResponseEntity<UnidadeMedidaResponse> findById(
+            @Parameter(description = "ID da unidade de medida a ser buscada")
             @PathVariable Long id
     ) {
         var dto = mapper.toDto(service.findBy(id));
         return okResponse(dto);
     }
 
-    @Operation(summary = "Deleta um subgrupo de produto pela chave primária")
+    @Operation(summary = "Deleta uma unidade de medida pela chave primária")
     @ApiResponses(value = {
         @ApiResponse(
                 responseCode = "204",
-                description = "Subgrupo de produto removido com sucesso",
+                description = "Unidade de medida removida com sucesso",
                 content = @Content
         ),
         @ApiResponse(
                 responseCode = "404",
-                description = "Subgrupo de produto não encontrado",
+                description = "Unidade de medida não encontrada",
                 content = @Content
         ),
         @ApiResponse(
                 responseCode = "409",
-                description = "Não é possível deletar um subgrupo de produto."
+                description = "Não é possível deletar uma unidade de medida."
         )
     })
     @DeleteMapping("/{id}")
@@ -167,24 +163,24 @@ public class SubgrupoProdutoController
         return voidResponse();
     }
 
-    @Operation(summary = "Altera os dados de um subgrupo de produto pela chave primária")
+    @Operation(summary = "Alterar os dados de uma unidade de medida pela chave primária")
     @ApiResponses(value = {
         @ApiResponse(
                 responseCode = "200",
-                description = "Dados do subgrupo de produto alterados com sucesso",
+                description = "Dados da unidade de medida alterados com sucesso",
                 content = @Content
         ),
         @ApiResponse(
                 responseCode = "404",
-                description = "Subgrupo de produto não encontrado",
+                description = "Unidade de medida não encontrada",
                 content = @Content
         )
     })
     @PutMapping("/{id}")
     @Override
-    public ResponseEntity<SubgrupoProdutoResponse> update(
+    public ResponseEntity<UnidadeMedidaResponse> update(
             @PathVariable Long id,
-            @RequestBody @Valid SubgrupoProdutoRequest dto
+            @RequestBody @Valid UnidadeMedidaRequest dto
     ) {
         var entity = service.update(id, dto);
         var response = mapper.toDto(entity);

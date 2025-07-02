@@ -17,10 +17,12 @@ import org.springframework.web.util.UriComponentsBuilder;
  * manipulado pelos serviços
  * @param <DTO_RESPONSE> Classe DTO que representa a resposta a ser encaminhada
  * para o cliente requisitante
- * @param <DTO_REQUEST> Classe DTO que representa um objeto da classe DTO que
- * contem os atributos para manipulação de dados no sistema
+ * @param <DTO_CREATE_REQUEST> Classe DTO que representa um objeto da classe DTO que
+ * contem os atributos para criação de uma entidade no banco de dados do sistema
+ * @param <DTO_UPDATE_REQUEST> Classe DTO que representa um objeto da classe DTO que
+ * contem os atributos para alteração de dados de uma entidade no banco de dados do sistema
  */
-public interface IController<DTO_K, DTO_RESPONSE, DTO_REQUEST> {
+public interface IController<DTO_K, DTO_RESPONSE, DTO_CREATE_REQUEST, DTO_UPDATE_REQUEST> {
 
     /**
      * Método para criar objetos.Método utilizado para interceptar a requisição
@@ -32,7 +34,7 @@ public interface IController<DTO_K, DTO_RESPONSE, DTO_REQUEST> {
      * @return
      */
     public ResponseEntity<DTO_RESPONSE> create(
-            DTO_REQUEST request,
+            DTO_CREATE_REQUEST request,
             UriComponentsBuilder uriBuilder);
 
     /**
@@ -61,7 +63,7 @@ public interface IController<DTO_K, DTO_RESPONSE, DTO_REQUEST> {
      * @param request Objeto que contem os dados que serão alterados no sistema.
      * @return
      */
-    public ResponseEntity<DTO_RESPONSE> update(DTO_K id, DTO_REQUEST request);
+    public ResponseEntity<DTO_RESPONSE> update(DTO_K id, DTO_UPDATE_REQUEST request);
 
     /**
      * Método para excluir um objeto. Método utilizado para interceptar a
