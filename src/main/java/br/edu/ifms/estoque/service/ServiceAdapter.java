@@ -39,7 +39,8 @@ public abstract class ServiceAdapter<E, K, DTO_RESPONSE, CREATE_DTO, UPDATE_DTO>
     @Override
     public E create(CREATE_DTO request) {
         var entity = mapper.toEntity(request);
-        return repository.save(entity);
+        var created = repository.save(entity);
+        return created;
     }
 
     @Override

@@ -79,7 +79,7 @@ public class MarcaController implements
                             examples = @ExampleObject(value = 
                                     """
                                     {
-                                        "nome": "Nome do novo marca"
+                                        "nome": "Nome da nova marca"
                                     }
                                     """)
                     )

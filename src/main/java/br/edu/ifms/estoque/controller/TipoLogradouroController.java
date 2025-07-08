@@ -7,19 +7,20 @@ package br.edu.ifms.estoque.controller;
 import br.edu.ifms.estoque.dto.TipoLogradouroRequest;
 import br.edu.ifms.estoque.dto.TipoLogradouroResponse;
 import br.edu.ifms.estoque.mapper.TipoLogradouroMapper;
-import br.edu.ifms.estoque.model.TipoLogradouro;
-import br.edu.ifms.estoque.repository.TipoLogradouroRepository;
+import br.edu.ifms.estoque.service.TipoLogradouroService;
 import jakarta.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,30 +29,37 @@ import org.springframework.web.bind.annotation.RestController;
  * @author 1513003
  */
 @RestController
+@RequestMapping("/tipo-logradouro")
 public class TipoLogradouroController {
 
     @Autowired
-    private TipoLogradouroRepository repository;
+    private TipoLogradouroService service;
     
     @Autowired
     private TipoLogradouroMapper mapper;
 
     @Transactional
-    @RequestMapping(method = RequestMethod.POST, path = "/tipo-logradouro")
+    @PostMapping
     public ResponseEntity<TipoLogradouroResponse> create(
             @RequestBody @Valid TipoLogradouroRequest dto
     ) {
-        TipoLogradouro tipoLogradouro = mapper
-                .toEntity(dto);
-        var saved = repository.save(tipoLogradouro);
+        var saved = service.create(dto);
         var savedDto = mapper.toDto(saved);
         return new ResponseEntity(savedDto, HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/tipo-logradouro")
+    @GetMapping
     public List<TipoLogradouroResponse> list() {
-        var lista = repository.findAll();
+        var lista = service.list();
         
+        return mapper.toListDto(lista);
+    }
+    
+    @GetMapping("/nome")
+    public List<TipoLogradouroResponse> list(
+            @RequestParam String nome
+    ) {
+        var lista = service.listarPorNome(nome);
         return mapper.toListDto(lista);
     }
 
@@ -61,50 +69,33 @@ public class TipoLogradouroController {
      * @param id
      * @return
      */
-    @RequestMapping(method = RequestMethod.GET, path = "/tipo-logradouro/{id}")
-    public TipoLogradouro findBy(
+    @GetMapping("/{id}")
+    public ResponseEntity<TipoLogradouroResponse> findBy(
             @PathVariable Long id
     ) {
-        var optional = find(id);
-        if (optional.isPresent()) {
-            return optional.get();
-        }
-        return null;
+        var entity = service.findBy(id);
+        var dto = mapper.toDto(entity);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(dto);
     }
 
-    public Optional<TipoLogradouro> find(
-            Long id
-    ) {
-        Optional<TipoLogradouro> optional = repository.findById(id);
-        return optional;
-    }
-
-    @RequestMapping(method = RequestMethod.DELETE, path = "/tipo-logradouro/{id}")
+    @DeleteMapping("/{id}")
     public void delete(
             @PathVariable(name = "id") Long id
     ) {
-        var optional = find(id);
-        if (optional.isPresent()) {
-            TipoLogradouro tipoLogradouro = optional.get();
-            repository.delete(tipoLogradouro);
-        }
+        service.deleteById(id);
     }
 
     @Transactional
-    @RequestMapping(method = RequestMethod.PUT, path = "/tipo-logradouro/{id}")
-    public TipoLogradouro update(
+    @PutMapping("/{id}")
+    public ResponseEntity<TipoLogradouroResponse> update(
             @PathVariable Long id,
-            @RequestParam(name = "nome", required = true) String nome,
-            @RequestParam(name = "sigla", required = true) String sigla
+            @RequestBody @Valid TipoLogradouroRequest request
     ) {
-        var optional = find(id);
-        if (optional.isPresent()) {
-            var tipoLogradouro = optional.get();
-            tipoLogradouro.setNome(nome);
-            tipoLogradouro.setSigla(sigla);
-            return tipoLogradouro;
-        }
-        return null;
+        var updated = service.update(id, request);
+        var response = mapper.toDto(updated);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(response);
     }
 
 }

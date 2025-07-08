@@ -5,7 +5,10 @@
 package br.edu.ifms.estoque.repository;
 
 import br.edu.ifms.estoque.model.SubgrupoProduto;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -16,5 +19,10 @@ import org.springframework.stereotype.Repository;
 public interface SubgrupoProdutoRepository
         extends JpaRepository<SubgrupoProduto, Long>
 {
-    
+    @Query(value = """
+                   SELECT sb FROM SubgrupoProdut sb
+                   WHERE sb.grupoProduto.id IN :gruposIds
+                   """)
+    public List<SubgrupoProduto> buscarPorGruposdeProdutos(
+            @Param("gruposId") List<Long> items);
 }
