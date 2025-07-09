@@ -4,6 +4,7 @@
  */
 package br.edu.ifms.estoque.controller;
 
+import br.edu.ifms.estoque.dto.IAgrupoProdutoDTO;
 import br.edu.ifms.estoque.dto.SubgrupoProdutoResponse;
 import br.edu.ifms.estoque.dto.SubgrupoProdutoRequest;
 import br.edu.ifms.estoque.mapper.SubgrupoProdutoMapper;
@@ -19,6 +20,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.net.URI;
 import java.util.List;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -189,6 +191,13 @@ public class SubgrupoProdutoController
         var entity = service.update(id, dto);
         var response = mapper.toDto(entity);
         return okResponse(response);
+    }
+    
+    @GetMapping("/agrupa-produto")
+    public ResponseEntity<List<IAgrupoProdutoDTO>> listaAgrupaSubgrupos() {
+        var listaAgrupada = service.listaAgrupaSubgrupo();
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(listaAgrupada);
     }
 
 }

@@ -4,9 +4,11 @@
  */
 package br.edu.ifms.estoque.repository;
 
+import br.edu.ifms.estoque.dto.IAgrupoProdutoDTO;
 import br.edu.ifms.estoque.model.SubgrupoProduto;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -20,9 +22,25 @@ public interface SubgrupoProdutoRepository
         extends JpaRepository<SubgrupoProduto, Long>
 {
     @Query(value = """
-                   SELECT sb FROM SubgrupoProdut sb
+                   SELECT sb FROM SubgrupoProduto sb
                    WHERE sb.grupoProduto.id IN :gruposIds
                    """)
     public List<SubgrupoProduto> buscarPorGruposdeProdutos(
             @Param("gruposId") List<Long> items);
+    
+    @Query(value = """
+                   SELECT
+                   count(sb.grupo_produto_id) as quantidade_subgrupos,
+                   sb.grupo_produto_id,
+                   (SELECT s.nome FROM subgrupo_produto as s where s.id = sb.grupo_produto_id) as NOME
+                   FROM SUBGRUPO_PRODUTO as sb
+                   GROUP BY sb.grupo_produto_id
+                   """,
+            nativeQuery = true)
+    public List<IAgrupoProdutoDTO> listaAgrupadaPorSubgrupo();
+    
+//    @Modifying
+//    @Query(value = "update subgrupo_produto set deleted = true where id = ?1",
+//            nativeQuery = true)
+//    public int deleteLogico(Long id);
 }
