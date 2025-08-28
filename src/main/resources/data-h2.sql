@@ -49,6 +49,7 @@ INSERT INTO elemento_base (id, nome, elemento_type) values
 INSERT INTO tipo_logradouro(id, nome, sigla) values
 (1, 'Avenida', 'Av'),
 (2, 'Rua', 'R');
+ALTER SEQUENCE table_per_class_base RESTART WITH 3;
 
 INSERT INTO logradouro (id, tipo_logradouro_id) values
 (4, 1),

@@ -8,7 +8,6 @@ import br.edu.ifms.estoque.dto.IAgrupoProdutoDTO;
 import br.edu.ifms.estoque.model.SubgrupoProduto;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -23,7 +22,7 @@ public interface SubgrupoProdutoRepository
 {
     @Query(value = """
                    SELECT sb FROM SubgrupoProduto sb
-                   WHERE sb.grupoProduto.id IN :gruposIds
+                   WHERE sb.grupoProduto.id IN :gruposId
                    """)
     public List<SubgrupoProduto> buscarPorGruposdeProdutos(
             @Param("gruposId") List<Long> items);

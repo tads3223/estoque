@@ -19,7 +19,7 @@ import jakarta.persistence.InheritanceType;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class TablePerClassBase implements IBaseClass {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "tablePerClassBase")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tablePerClassBase")
     private Long id;
     private String nome;
 

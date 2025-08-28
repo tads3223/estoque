@@ -45,7 +45,7 @@ public class TipoLogradouroController {
     ) {
         var saved = service.create(dto);
         var savedDto = mapper.toDto(saved);
-        return new ResponseEntity(savedDto, HttpStatus.OK);
+        return new ResponseEntity(savedDto, HttpStatus.CREATED);
     }
 
     @GetMapping
