@@ -10,6 +10,10 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
 /**
  *
@@ -21,6 +25,10 @@ import java.time.LocalDate;
         name = "tablePerClassBase",
         allocationSize = 1
 )
+@Data
+@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
+@ToString(callSuper = true, onlyExplicitlyIncluded = true)
+@SuperBuilder
 public class Produto extends TablePerClassBase {
 
     private String descricao;
@@ -31,81 +39,11 @@ public class Produto extends TablePerClassBase {
 
     @ManyToOne(optional = false)
     private SubgrupoProduto subgrupo;
-    
+
     @ManyToOne(optional = false)
     private Marca marca;
-    
+
     @ManyToOne(optional = false)
     private UnidadeMedida unidadeMedida;
 
-    public Produto() {
-    }
-
-    public Produto(Long id, String nome) {
-        super(id, nome);
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public BigDecimal getPreco() {
-        return preco;
-    }
-
-    public void setPreco(BigDecimal preco) {
-        this.preco = preco;
-    }
-
-    public BigDecimal getEstoque() {
-        return estoque;
-    }
-
-    public void setEstoque(BigDecimal estoque) {
-        this.estoque = estoque;
-    }
-
-    public LocalDate getDataUltimaCompra() {
-        return dataUltimaCompra;
-    }
-
-    public void setDataUltimaCompra(LocalDate dataUltimaCompra) {
-        this.dataUltimaCompra = dataUltimaCompra;
-    }
-
-    public Integer getEstoqueMinimo() {
-        return estoqueMinimo;
-    }
-
-    public void setEstoqueMinimo(Integer estoqueMinimo) {
-        this.estoqueMinimo = estoqueMinimo;
-    }
-
-    public SubgrupoProduto getSubgrupo() {
-        return subgrupo;
-    }
-
-    public void setSubgrupo(SubgrupoProduto subgrupo) {
-        this.subgrupo = subgrupo;
-    }
-
-    public Marca getMarca() {
-        return marca;
-    }
-
-    public void setMarca(Marca marca) {
-        this.marca = marca;
-    }
-
-    public UnidadeMedida getUnidadeMedida() {
-        return unidadeMedida;
-    }
-
-    public void setUnidadeMedida(UnidadeMedida unidadeMedida) {
-        this.unidadeMedida = unidadeMedida;
-    }
 }

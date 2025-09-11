@@ -9,6 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import java.util.List;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  *
@@ -16,9 +18,14 @@ import java.util.List;
  */
 @Entity
 @SequenceGenerator(
-        sequenceName = "tipo_logradouro_sequence", 
-        name = "tablePerClassBase", 
+        sequenceName = "tipo_logradouro_sequence",
+        name = "tablePerClassBase",
         allocationSize = 1
+)
+@Data
+@EqualsAndHashCode(
+        callSuper = true,
+        onlyExplicitlyIncluded = true
 )
 public class TipoLogradouro extends TablePerClassBase {
 
@@ -37,22 +44,6 @@ public class TipoLogradouro extends TablePerClassBase {
     public TipoLogradouro(String nome, String sigla) {
         super.setNome(nome);
         this.sigla = sigla;
-    }
-
-    public String getSigla() {
-        return sigla;
-    }
-
-    public void setSigla(String sigla) {
-        this.sigla = sigla;
-    }
-
-    public List<Logradouro> getLogradouros() {
-        return logradouros;
-    }
-
-    public void setLogradouros(List<Logradouro> logradouros) {
-        this.logradouros = logradouros;
     }
 
 }
