@@ -24,10 +24,10 @@ public class TipoLogradouroMapper implements
     public TipoLogradouro toEntity(
             TipoLogradouroRequest dto
     ) {
-        var entity = new TipoLogradouro(
-                dto.getNome(),
-                dto.getSigla()
-        );
+        var entity = TipoLogradouro.builder()
+                .nome(dto.getNome())
+                .sigla(dto.getSigla())
+                .build();
         return entity;
     }
     

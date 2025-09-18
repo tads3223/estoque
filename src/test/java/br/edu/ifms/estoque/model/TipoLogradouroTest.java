@@ -22,7 +22,7 @@ public class TipoLogradouroTest {
         Long expectedId = 1L;
         String expectedNome = "Rua";
         String expectedSiga = "R";
-        TipoLogradouro tp1 = new TipoLogradouro(expectedId, expectedNome);
+        TipoLogradouro tp1 = TipoLogradouro.builder().id(expectedId).nome(expectedNome).build();
         tp1.setSigla(expectedSiga);
         
         Assertions.assertEquals(expectedId, tp1.getId());
@@ -35,10 +35,10 @@ public class TipoLogradouroTest {
         Long expectedId = 1L;
         String expectedNome = "Centro";
         String expectedSiga = "R";
-        TipoLogradouro tp1 = new TipoLogradouro(expectedId, expectedNome);
+        TipoLogradouro tp1 = TipoLogradouro.builder().id(expectedId).nome(expectedNome).build();
         tp1.setSigla(expectedSiga);
         
-        TipoLogradouro tp2 = new TipoLogradouro(expectedId, "Avenida");
+        TipoLogradouro tp2 = TipoLogradouro.builder().id(expectedId).nome("Avenida").build();
         tp1.setSigla("AV");
         
         System.out.println(tp1);

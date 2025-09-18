@@ -7,6 +7,7 @@ package br.edu.ifms.estoque.model;
 import br.edu.ifms.estoque.model.heranca.TablePerClassBase;
 import jakarta.persistence.Entity;
 import jakarta.persistence.SequenceGenerator;
+import lombok.experimental.SuperBuilder;
 
 /**
  *
@@ -18,21 +19,10 @@ import jakarta.persistence.SequenceGenerator;
         name = "tablePerClassBase", 
         allocationSize = 1
 )
+@SuperBuilder
 public class Cidade extends TablePerClassBase {
     
     private String uf;
-
-    public Cidade() {
-    }
-
-    public Cidade(String uf) {
-        this.uf = uf;
-    }
-
-    public Cidade(Long id, String nome, String uf) {
-        super(id, nome);
-        this.uf = uf;
-    }
 
     public String getUf() {
         return uf;

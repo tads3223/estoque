@@ -37,7 +37,7 @@ public class CidadeController {
             @RequestParam(name = "uf", required = true) String uf
     ) {
             // Depois, cria o objeto logradouro
-        var cidade = new Cidade(null, nome, uf);
+        var cidade = Cidade.builder().nome(nome).uf(uf).build();
         // Enfim, salva o objeto no banco de dados
         repository.save(cidade);
         return cidade;

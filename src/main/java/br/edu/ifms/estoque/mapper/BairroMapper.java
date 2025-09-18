@@ -29,7 +29,9 @@ public class BairroMapper implements
 
     @Override
     public Bairro toEntity(BairroRequest request) {
-        return new Bairro(null, request.getNome());
+        return Bairro.builder()
+                .nome(request.getNome())
+                .build();
     }
 
     @Override

@@ -55,29 +55,27 @@ public class SubgrupoProdutoMapper implements IMapper<SubgrupoProduto, SubgrupoP
 
     @Override
     public SubgrupoProduto toEntity(SubgrupoProdutoRequest request) {
-        var subgrupo = new SubgrupoProduto();
+        var subgrupo = SubgrupoProduto.builder().build();
         subgrupo.setNome(request.getNome());
         if (request.getGrupoProduto() != null) {
-            var grupoProduto = new SubgrupoProduto(
-                    request.getGrupoProduto().getId(),
-                    request.getGrupoProduto().getNome(),
-                    null
-            );
+            var grupoProduto = SubgrupoProduto.builder()
+                    .id(request.getGrupoProduto().getId())
+                    .nome(request.getGrupoProduto().getNome())
+                    .build();
             subgrupo.setGrupoProduto(grupoProduto);
         }
         return subgrupo;
     }
     
     public SubgrupoProduto toEntity(SubgrupoProdutoResponse response) {
-        var subgrupo = new SubgrupoProduto();
+        var subgrupo = SubgrupoProduto.builder().build();
         subgrupo.setId(response.getId());
         subgrupo.setNome(response.getNome());
         if (response.getGrupoProduto() != null) {
-            var grupoProduto = new SubgrupoProduto(
-                    response.getGrupoProduto().getId(),
-                    response.getGrupoProduto().getNome(),
-                    null
-            );
+            var grupoProduto = SubgrupoProduto.builder()
+                    .id(response.getGrupoProduto().getId())
+                    .nome(response.getGrupoProduto().getNome())
+                    .build();
             subgrupo.setGrupoProduto(grupoProduto);
         }
         return subgrupo;
@@ -87,11 +85,10 @@ public class SubgrupoProdutoMapper implements IMapper<SubgrupoProduto, SubgrupoP
     public SubgrupoProduto update(SubgrupoProdutoRequest request, SubgrupoProduto entity) {
         entity.setNome(request.getNome());
         if (request.getGrupoProduto() != null) {
-            var grupoProduto = new SubgrupoProduto(
-                    request.getGrupoProduto().getId(),
-                    request.getGrupoProduto().getNome(),
-                    null
-            );
+            var grupoProduto = SubgrupoProduto.builder()
+                    .id(request.getGrupoProduto().getId())
+                    .nome(request.getGrupoProduto().getNome())
+                    .build();
             entity.setGrupoProduto(grupoProduto);
         }
         return entity;

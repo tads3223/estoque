@@ -11,6 +11,7 @@ import jakarta.persistence.SequenceGenerator;
 import java.util.List;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.SuperBuilder;
 
 /**
  *
@@ -27,23 +28,12 @@ import lombok.EqualsAndHashCode;
         callSuper = true,
         onlyExplicitlyIncluded = true
 )
+@SuperBuilder
 public class TipoLogradouro extends TablePerClassBase {
 
     private String sigla;
 
     @OneToMany(mappedBy = "tipoLogradouro")
     private List<Logradouro> logradouros;
-
-    public TipoLogradouro() {
-    }
-
-    public TipoLogradouro(Long id, String nome) {
-        super(id, nome);
-    }
-
-    public TipoLogradouro(String nome, String sigla) {
-        super.setNome(nome);
-        this.sigla = sigla;
-    }
 
 }

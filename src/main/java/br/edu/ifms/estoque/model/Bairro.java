@@ -7,6 +7,7 @@ package br.edu.ifms.estoque.model;
 import br.edu.ifms.estoque.model.heranca.TablePerClassBase;
 import jakarta.persistence.Entity;
 import jakarta.persistence.SequenceGenerator;
+import lombok.experimental.SuperBuilder;
 
 /**
  *
@@ -18,12 +19,7 @@ import jakarta.persistence.SequenceGenerator;
         name = "tablePerClassBase", 
         allocationSize = 1
 )
+@SuperBuilder
 public class Bairro extends TablePerClassBase {
 
-    public Bairro() {
-    }
-    
-    public Bairro(Long id, String nome) {
-        super(id, nome);
-    }
 }

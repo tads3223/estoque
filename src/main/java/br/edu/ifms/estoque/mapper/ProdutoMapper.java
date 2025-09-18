@@ -78,7 +78,7 @@ public class ProdutoMapper implements IMapper<Produto, ProdutoResponse, ProdutoR
             UnidadeMedidaRepository unidadeMedidaRepository,
             MarcaRepository marcaRepository
     ) {
-        var entity = new Produto(null, dto.getNome());
+        var entity = Produto.builder().nome(dto.getNome()).build();
         entity.setDescricao(dto.getDescricao());
         entity.setEstoqueMinimo(dto.getEstoqueMinimo());
 
@@ -107,7 +107,7 @@ public class ProdutoMapper implements IMapper<Produto, ProdutoResponse, ProdutoR
 
     @Override
     public Produto toEntity(ProdutoRequest request) {
-        var entity = new Produto(null, request.getNome());
+        var entity = Produto.builder().nome(request.getNome()).build();
         entity.setDescricao(request.getDescricao());
         entity.setEstoqueMinimo(request.getEstoqueMinimo());
         if (request.getSubGrupo() != null) {

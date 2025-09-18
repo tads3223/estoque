@@ -20,7 +20,7 @@ public class BairroTest {
     public void testDadoNome_retornaNome() {
         Long expectedId = 1L;
         String expectedNome = "Centro";
-        Bairro b1 = new Bairro(expectedId, expectedNome);
+        Bairro b1 = Bairro.builder().id(expectedId).nome(expectedNome).build();
         Assertions.assertEquals(expectedId, b1.getId());
         Assertions.assertEquals(expectedNome, b1.getNome());
     }
@@ -29,8 +29,8 @@ public class BairroTest {
     public void testDadoObjetoBairro_testarEqualsTrue() {
         Long expectedId = 1L;
         String expectedNome = "Centro";
-        Bairro b1 = new Bairro(expectedId, expectedNome);
-        Bairro b2 = new Bairro(expectedId, "Paraíso I");
+        Bairro b1 = Bairro.builder().id(expectedId).nome(expectedNome).build();
+        Bairro b2 = Bairro.builder().id(expectedId).nome("Paraíso I").build();
         
         System.out.println(b1);
         System.out.println(b2);

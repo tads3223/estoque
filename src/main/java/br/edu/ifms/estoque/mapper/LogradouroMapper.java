@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class LogradouroMapper implements IMapper<Logradouro, LogradouroResponse, LogradouroRequest, LogradouroRequest> {
-    
+
     private final TipoLogradouroMapper tipoLogradouroMapper;
 
     public LogradouroMapper(TipoLogradouroMapper tipoLogradouroMapper) {
@@ -63,8 +63,9 @@ public class LogradouroMapper implements IMapper<Logradouro, LogradouroResponse,
     @Override
     public Logradouro toEntity(LogradouroRequest request) {
         // Primeiro, cria o tipo de logradouro
-        var tipoLogradouro = new TipoLogradouro(
-                request.getTipoLogradouro().getId(), null);
+        var tipoLogradouro = TipoLogradouro.builder()
+                .nome(request.getNome())
+                .build();
         // Depois, cria o objeto logradouro
         var logradouro = new Logradouro(
                 null,
@@ -76,15 +77,16 @@ public class LogradouroMapper implements IMapper<Logradouro, LogradouroResponse,
     @Override
     public Logradouro update(LogradouroRequest request, Logradouro entity) {
         // Primeiro, cria o tipo de logradouro
-        var tipoLogradouro = new TipoLogradouro(
-                request.getTipoLogradouro().getId(), null);
+        var tipoLogradouro = TipoLogradouro.builder()
+                .id(request.getTipoLogradouro().getId())
+                .build();
         entity.setNome(request.getNome());
         entity.setTipoLogradouro(tipoLogradouro);
         return entity;
     }
-    
+
     public Logradouro update(
-            LogradouroRequest request, 
+            LogradouroRequest request,
             Logradouro entity,
             TipoLogradouroRepository repository) {
         // Primeiro, recuperar o tipo logradouro

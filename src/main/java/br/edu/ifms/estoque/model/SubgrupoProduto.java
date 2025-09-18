@@ -8,6 +8,7 @@ import br.edu.ifms.estoque.model.heranca.TablePerClassBase;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
+import lombok.experimental.SuperBuilder;
 
 /**
  *
@@ -19,18 +20,11 @@ import jakarta.persistence.SequenceGenerator;
         name = "tablePerClassBase", 
         allocationSize = 1
 )
+@SuperBuilder
 public class SubgrupoProduto extends TablePerClassBase {
     
     @ManyToOne
     private SubgrupoProduto grupoProduto;
-
-    public SubgrupoProduto() {
-    }
-
-    public SubgrupoProduto(Long id, String nome, SubgrupoProduto grupoProduto) {
-        super(id, nome);
-        this.grupoProduto = grupoProduto;
-    }
     
     public SubgrupoProduto getGrupoProduto() {
         return grupoProduto;
