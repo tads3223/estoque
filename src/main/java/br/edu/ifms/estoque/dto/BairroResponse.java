@@ -4,17 +4,13 @@
  */
 package br.edu.ifms.estoque.dto;
 
+import lombok.experimental.SuperBuilder;
+
 /**
  *
  * @author 1513003
  */
+@SuperBuilder
 public class BairroResponse extends DefaultResponse {
 
-    public BairroResponse() {
-    }
-
-    public BairroResponse(Long id, String nome) {
-        super(id, nome);
-    }
-    
 }

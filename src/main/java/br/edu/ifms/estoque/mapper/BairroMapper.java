@@ -21,10 +21,10 @@ public class BairroMapper implements
 
     @Override
     public BairroResponse toDto(Bairro entity) {
-        return new BairroResponse(
-                entity.getId(), 
-                entity.getNome()
-        );
+        return BairroResponse.builder()
+                .id(entity.getId())
+                .nome(entity.getNome())
+                .build();
     }
 
     @Override

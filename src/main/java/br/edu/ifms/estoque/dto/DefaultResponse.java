@@ -4,37 +4,23 @@
  */
 package br.edu.ifms.estoque.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+
 /**
  *
  * @author 1513003
  */
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@SuperBuilder
 public abstract class DefaultResponse {
     
     private Long id;
     private String nome;
-
-    public DefaultResponse() {
-    }
-
-    public DefaultResponse(Long id, String nome) {
-        this.id = id;
-        this.nome = nome;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
     
 }
