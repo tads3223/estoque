@@ -4,35 +4,43 @@
  */
 package br.edu.ifms.estoque.service;
 
-import org.springframework.security.core.userdetails.User;
+import br.edu.ifms.estoque.dto.UsuarioRegisterRequest;
+import br.edu.ifms.estoque.mapper.UsuarioMapper;
+import br.edu.ifms.estoque.model.Usuario;
+import br.edu.ifms.estoque.repository.UsuarioRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author 1513003
  */
+@RequiredArgsConstructor
 @Service
 public class UsuarioService implements UserDetailsService {
 
-    PasswordEncoder encoder = new BCryptPasswordEncoder();
+    private final UsuarioRepository repository;
     
     @Override
     public UserDetails loadUserByUsername(String username) 
             throws UsernameNotFoundException {
-        UserDetails user = User.builder()
-                .username("meu-usuario")
-                .password(encoder.encode("senha"))
-                .authorities("ROOT")
-                .build();
-        if (user.getUsername().equals(username)) {
-            return user;
+        
+        var optional = repository.findById(username);
+        
+        if (optional.isPresent()) {
+            return optional.get();
         }
         throw new UsernameNotFoundException("Usuário não encontrado");
+    }
+    
+    @Transactional
+    public Usuario save(UsuarioRegisterRequest req) {
+        var entity = UsuarioMapper.INSTANCE.toEntity(req);
+        return repository.save(entity);
     }
     
 }

@@ -9,51 +9,41 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.springframework.security.core.GrantedAuthority;
 
 /**
  *
  * @author 1513003
  */
+@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(onlyExplicitlyIncluded = true)
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-public class Perfil {
+public class Perfil implements GrantedAuthority {
+    @EqualsAndHashCode.Include
+    @ToString.Include
     @Id
     @GeneratedValue
     private Long id;
+    
+    @ToString.Include
     private String nome;
     
     @ManyToMany(mappedBy = "perfis")
     private List<Usuario> usuarios;
 
-    public Perfil() {
-    }
-
-    public Perfil(Long id, String nome) {
-        this.id = id;
-        this.nome = nome;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public List<Usuario> getUsuarios() {
-        return usuarios;
-    }
-
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
+    @Override
+    public String getAuthority() {
+        return this.nome;
     }
     
 }

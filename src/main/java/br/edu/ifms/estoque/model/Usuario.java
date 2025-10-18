@@ -11,25 +11,45 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.UniqueConstraint;
+import java.util.Collection;
 import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  *
  * @author 1513003
  */
+@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(onlyExplicitlyIncluded = true)
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-public class Usuario {
+public class Usuario implements UserDetails {
+
+    @EqualsAndHashCode.Include
+    @ToString.Include
     @Id
     private String login;
     private String senha;
     private boolean bloqueado;
+
+    @ToString.Include
     private Status status;
-    
+
     @ManyToMany
     @JoinTable(
             name = "perfis_usuario",
             joinColumns = @JoinColumn(
-                    name = "login_id", 
+                    name = "login_id",
                     nullable = false
             ),
             inverseJoinColumns = @JoinColumn(
@@ -42,53 +62,39 @@ public class Usuario {
     )
     private List<Perfil> perfis;
 
-    public Usuario() {
+    @Override
+    public String getUsername() {
+        return this.login;
     }
 
-    public Usuario(String login, String senha, boolean bloqueado, Status status) {
-        this.login = login;
-        this.senha = senha;
-        this.bloqueado = bloqueado;
-        this.status = status;
+    @Override
+    public String getPassword() {
+        return this.senha;
     }
 
-    public String getLogin() {
-        return login;
+    @Override
+    public boolean isEnabled() {
+        return this.bloqueado;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
 
-    public String getSenha() {
-        return senha;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public boolean isBloqueado() {
-        return bloqueado;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.perfis;
     }
 
-    public void setBloqueado(boolean bloqueado) {
-        this.bloqueado = bloqueado;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public List<Perfil> getPerfis() {
-        return perfis;
-    }
-
-    public void setPerfis(List<Perfil> perfis) {
-        this.perfis = perfis;
-    }
 }

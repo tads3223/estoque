@@ -48,7 +48,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize
                         -> authorize.anyRequest().authenticated()
                 )
-                .httpBasic(Customizer.withDefaults());
+//                .httpBasic(Customizer.withDefaults())
+                .oauth2Login(Customizer.withDefaults())
+                .oauth2ResourceServer(oauth -> oauth.jwt(Customizer.withDefaults()));
 
         http.logout(logout -> logout
                 .logoutUrl("/logout") // Define the logout URL
