@@ -9,7 +9,6 @@ import br.edu.ifms.estoque.mapper.UsuarioMapper;
 import br.edu.ifms.estoque.model.Usuario;
 import br.edu.ifms.estoque.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -26,7 +25,7 @@ public class UsuarioService implements UserDetailsService {
     private final UsuarioRepository repository;
     
     @Override
-    public UserDetails loadUserByUsername(String username) 
+    public Usuario loadUserByUsername(String username) 
             throws UsernameNotFoundException {
         
         var optional = repository.findById(username);

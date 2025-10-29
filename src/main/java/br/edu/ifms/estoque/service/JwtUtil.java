@@ -4,12 +4,14 @@
  */
 package br.edu.ifms.estoque.service;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.oauth2.jose.jws.SignatureAlgorithm;
 import org.springframework.stereotype.Service;
 
 
@@ -79,7 +81,7 @@ public class JwtUtil {
                  * SECRET_KEY pode conter qualquer valor alfanumérico. Ajuda a
                  * aumentar a segurança da codificação do token.
                  */
-                .signWith(SignatureAlgorithm.ES256, SECRET_KEY)
+                .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
                 .compact();
     }
 
