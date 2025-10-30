@@ -11,7 +11,6 @@ import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
@@ -23,7 +22,7 @@ import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
  *
  * @author 1513003
  */
-@Configuration
+//@Configuration
 public class AppConfig {
 
     @Value("${estoque.jwt.public.key}")

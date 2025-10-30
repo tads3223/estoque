@@ -11,15 +11,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
@@ -31,9 +28,9 @@ import org.springframework.security.web.util.matcher.RegexRequestMatcher;
  *
  * @author 1513003
  */
-@Configuration
-@EnableWebSecurity
-@EnableMethodSecurity
+//@Configuration
+//@EnableWebSecurity
+//@EnableMethodSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
 
@@ -129,37 +126,41 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 // --- 1. CONFIGURAÇÃO DE LOGIN LOCAL (FORM) ---
-                .formLogin(form -> form
-                // URL que o formulário POSTará as credenciais
-                .loginProcessingUrl("/api/auth/login-local")
-                // Handler que gera o JWT e redireciona para o frontend
-                .successHandler(tokenRedirectSuccessHandler)
-                // Permite acesso à página/URL de login
-                .permitAll()
+                .formLogin(form
+                        -> form
+                        // URL que o formulário POSTará as credenciais
+                        .loginProcessingUrl("/api/auth/login-local")
+                        // Handler que gera o JWT e redireciona para o frontend
+                        .successHandler(tokenRedirectSuccessHandler)
+                        // Permite acesso à página/URL de login
+                        .permitAll()
                 )
                 // --- 2. CONFIGURAÇÃO DE LOGIN SOCIAL (GOOGLE) ---
-                .oauth2Login(oauth2 -> oauth2
-                .userInfoEndpoint(userInfo -> userInfo
-                // Seu serviço que faz o Provisionamento JIT
-                .oidcUserService(googleSocialUserService)
-                )
-                // Handler que gera o JWT e redireciona para o frontend
-                .successHandler(tokenRedirectSuccessHandler)
+                .oauth2Login(oauth2
+                        -> oauth2
+                        .userInfoEndpoint(userInfo -> userInfo
+                        // Seu serviço que faz o Provisionamento JIT
+                        .oidcUserService(googleSocialUserService)
+                        )
+                        // Handler que gera o JWT e redireciona para o frontend
+                        .successHandler(tokenRedirectSuccessHandler)
                 )
                 // --- 3. CONFIGURAÇÃO DE SESSÃO (Necessário para o fluxo de redirecionamento) ---
                 // A sessão é criada temporariamente para armazenar o estado durante o login/redirect
-                .sessionManagement(s -> s
-                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+                .sessionManagement(s
+                        -> s
+                        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 )
                 // Permite o acesso a todas as URLs necessárias para iniciar os fluxos de login
-                .authorizeHttpRequests(auth -> auth
-                .requestMatchers(
-                        "/api/auth/login-local",
-                        "/oauth2/**", // URLs de inicio do OAuth2
-                        "/login/**" // Outras URLs relacionadas ao login
-                ).permitAll()
-                // Garante que o filtro 2 não interfira nas requisições API
-                .anyRequest().authenticated()
+                .authorizeHttpRequests(auth
+                        -> auth
+                        .requestMatchers(
+                                "/api/auth/login-local",
+                                "/oauth2/**", // URLs de inicio do OAuth2
+                                "/login/**" // Outras URLs relacionadas ao login
+                        ).permitAll()
+                        // Garante que o filtro 2 não interfira nas requisições API
+                        .anyRequest().authenticated()
                 );
 
         return http.build();

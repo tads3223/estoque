@@ -27,8 +27,8 @@
         <url/>
     </scm>
     <properties>
-        <java.version>24</java.version>
-        <maven.compiler.release>23</maven.compiler.release>
+        <java.version>21</java.version>
+        <maven.compiler.release>21</maven.compiler.release>
         <org.mapstruct.version>1.6.3</org.mapstruct.version>
     </properties>
     <dependencies>
@@ -98,13 +98,25 @@
         </dependency>
         
         <!--Autenticação OAUTH 2.0-->
+        <!--Fundamental para gerar o JWT-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-oauth2-client</artifactId>
+            <artifactId>spring-boot-starter-oauth2-authorization-server</artifactId>
         </dependency>
+        <!--Utilizado para facilitar a configuração do Authorization Server e implementar a função oauth2AuthorizationServer-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-oauth2-authorization-server</artifactId>
+        </dependency>
+        <!--Para validar os tokens em endpoints-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+        </dependency>
+        <!--Para login social-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-client</artifactId>
         </dependency>
         
         <!--autenticacao via jwttoken-->
@@ -141,8 +153,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
                     <version>3.11.0</version>
-                    <source>24</source> <!-- depending on your project -->
-                    <target>24</target> <!-- depending on your project -->
+                    <source>21</source> <!-- depending on your project -->
+                    <target>21</target> <!-- depending on your project -->
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.mapstruct</groupId>

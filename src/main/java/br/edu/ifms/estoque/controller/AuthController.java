@@ -33,7 +33,7 @@ public class AuthController {
     public String loginUser(
             @RequestBody AuthenticationRequest authenticationRequest
     ) throws Exception {
-        return authService.autenticar(authenticationRequest);
+        return authService.getToken(authenticationRequest);
     }
 
 }
