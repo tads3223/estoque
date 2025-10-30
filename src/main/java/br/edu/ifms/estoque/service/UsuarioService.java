@@ -42,4 +42,9 @@ public class UsuarioService implements UserDetailsService {
         return repository.save(entity);
     }
     
+    @Transactional
+    public Usuario save(Usuario req) {
+        return repository.save(req);
+    }
+    
 }

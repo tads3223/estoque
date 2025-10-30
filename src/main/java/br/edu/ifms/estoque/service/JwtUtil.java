@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +48,11 @@ public class JwtUtil {
 
     private Boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
+    }
+
+    public String generateToken(Authentication authentication) {
+        Map<String, Object> claims = new HashMap<>();
+        return createToken(claims, authentication.getName());
     }
 
     public String generateToken(UserDetails userDetails) {

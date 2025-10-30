@@ -11,6 +11,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.UniqueConstraint;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -61,6 +62,13 @@ public class Usuario implements UserDetails {
             )
     )
     private List<Perfil> perfis;
+    
+    public void add(Perfil value) {
+        if (this.perfis == null) {
+            this.perfis = new ArrayList<>();
+        }
+        this.perfis.add(value);
+    }
 
     @Override
     public String getUsername() {
