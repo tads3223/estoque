@@ -5,49 +5,29 @@
 package br.edu.ifms.estoque.tipoContato;
 
 import br.edu.ifms.estoque.arquitetura.mapper.IMapper;
-import br.edu.ifms.estoque.tipoContato.TipoContatoRequest;
-import br.edu.ifms.estoque.tipoContato.TipoContatoResponse;
-import java.util.List;
-import java.util.stream.Collectors;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
+import org.mapstruct.factory.Mappers;
 
 /**
  *
  * @author 1513003
  */
-@Component
-public class TipoContatoMapper implements 
+@Mapper
+public interface TipoContatoMapper extends
         IMapper<TipoContato, TipoContatoResponse, TipoContatoRequest, TipoContatoRequest> {
 
+    public TipoContatoMapper INSTANCE = Mappers
+            .getMapper(TipoContatoMapper.class);
+    
+    @Mapping(target = "id", ignore = true)
     @Override
-    public TipoContatoResponse toDto(TipoContato entity) {
-        return new TipoContatoResponse(
-                entity.getId(),
-                entity.getNome(),
-                entity.getMascara()
-        );
-    }
+    public TipoContato toEntity(TipoContatoRequest request);
 
+    @Mapping(target = "id", ignore = true)
     @Override
-    public TipoContato toEntity(TipoContatoRequest request) {
-        return new TipoContato(
-                request.getNome(),
-                request.getMascara()
-        );
-    }
+    public TipoContato update(TipoContatoRequest request, @MappingTarget TipoContato entity);
 
-    @Override
-    public TipoContato update(TipoContatoRequest request, TipoContato entity) {
-        entity.setNome(request.getNome());
-        entity.setMascara(request.getMascara());
-        return entity;
-    }
-
-    @Override
-    public List<TipoContatoResponse> toListDto(List<TipoContato> items) {
-        return items.stream()
-                .map(item -> toDto(item))
-                .collect(Collectors.toList());
-    }
     
 }

@@ -9,7 +9,6 @@ package br.edu.ifms.estoque.produto;
  * @author 1513003
  */
 public interface IAgrupoProdutoDTO {
-    
 
     public int getQuantidadeSubgrupos();
 

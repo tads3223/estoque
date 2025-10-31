@@ -4,8 +4,7 @@
  */
 package br.edu.ifms.estoque.marca;
 
-import br.edu.ifms.estoque.marca.Marca;
-import org.springframework.data.jpa.repository.JpaRepository;
+import br.edu.ifms.estoque.arquitetura.repository.JpaSpecificationRepository;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface MarcaRepository
-        extends JpaRepository<Marca, Long>
+        extends JpaSpecificationRepository<Marca, Long>
 {
     
 }

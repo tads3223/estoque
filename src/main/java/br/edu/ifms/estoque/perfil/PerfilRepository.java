@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package br.edu.ifms.estoque.produto;
+package br.edu.ifms.estoque.perfil;
 
 import br.edu.ifms.estoque.arquitetura.repository.JpaSpecificationRepository;
 import org.springframework.stereotype.Repository;
@@ -12,8 +12,8 @@ import org.springframework.stereotype.Repository;
  * @author 1513003
  */
 @Repository
-public interface ProdutoRepository
-        extends JpaSpecificationRepository<Produto, Long>
+public interface PerfilRepository
+        extends JpaSpecificationRepository<Perfil, Long>
 {
     
 }

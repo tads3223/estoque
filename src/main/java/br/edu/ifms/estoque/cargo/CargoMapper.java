@@ -4,8 +4,6 @@
  */
 package br.edu.ifms.estoque.cargo;
 
-import br.edu.ifms.estoque.cargo.CargoRequest;
-import br.edu.ifms.estoque.cargo.CargoResponse;
 import br.edu.ifms.estoque.arquitetura.mapper.IMapper;
 import java.util.List;
 import java.util.stream.Collectors;

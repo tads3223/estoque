@@ -4,6 +4,7 @@
  */
 package br.edu.ifms.estoque.produto;
 
+import br.edu.ifms.estoque.arquitetura.dto.DefaultRequest;
 import br.edu.ifms.estoque.subgrupoProduto.SubgrupoProdutoResponse;
 import br.edu.ifms.estoque.unidadeMedida.UnidadeMedidaResponse;
 import br.edu.ifms.estoque.marca.MarcaResponse;
@@ -13,91 +14,39 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
-import java.time.LocalDateTime;
+import java.time.Instant;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 /**
  *
  * @author 1513003
  */
-public class ProdutoRequest {
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@SuperBuilder
+public class ProdutoRequest extends DefaultRequest {
 
-    @NotNull
-    @NotEmpty
-    @NotBlank
-    private String nome;
-    
     private String descricao;
-    
+
     @NotNull(message = "O valor do estoque deve ser informado")
     @Min(value = 1, message = "O estoque mínimo é 1")
     private Integer estoqueMinimo;
-    
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @NotNull(message = "A data da última compra não foi informada")
     @PastOrPresent(message = "A data informada deve ser igual ou anterior a data atual.")
-    private LocalDateTime dataUltimaCompra;
-    
+    private Instant dataUltimaCompra;
+
     @NotNull(message = "O atributo SUBGRUPO não foi INFORMADO.")
-    private SubgrupoProdutoResponse subGrupo;
-    
+    private SubgrupoProdutoResponse subgrupo;
+
     @NotNull(message = "O atributo UNIDADE DE MEDIDA não foi INFORMADO.")
     private UnidadeMedidaResponse unidadeMedida;
-    
+
     @NotNull(message = "O atributo MARCA não foi INFORMADO.")
     private MarcaResponse marca;
-
-    public ProdutoRequest() {
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public Integer getEstoqueMinimo() {
-        return estoqueMinimo;
-    }
-
-    public void setEstoqueMinimo(Integer estoqueMinimo) {
-        this.estoqueMinimo = estoqueMinimo;
-    }
-
-    public SubgrupoProdutoResponse getSubGrupo() {
-        return subGrupo;
-    }
-
-    public void setSubGrupo(SubgrupoProdutoResponse subGrupo) {
-        this.subGrupo = subGrupo;
-    }
-
-    public UnidadeMedidaResponse getUnidadeMedida() {
-        return unidadeMedida;
-    }
-
-    public void setUnidadeMedida(UnidadeMedidaResponse unidadeMedida) {
-        this.unidadeMedida = unidadeMedida;
-    }
-
-    public MarcaResponse getMarca() {
-        return marca;
-    }
-
-    public void setMarca(MarcaResponse marca) {
-        this.marca = marca;
-    }
-
-    public LocalDateTime getDataUltimaCompra() {
-        return dataUltimaCompra;
-    }
 }

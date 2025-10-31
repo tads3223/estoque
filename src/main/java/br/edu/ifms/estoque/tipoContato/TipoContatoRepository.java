@@ -4,8 +4,7 @@
  */
 package br.edu.ifms.estoque.tipoContato;
 
-import br.edu.ifms.estoque.tipoContato.TipoContato;
-import org.springframework.data.jpa.repository.JpaRepository;
+import br.edu.ifms.estoque.arquitetura.repository.JpaSpecificationRepository;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -14,6 +13,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface TipoContatoRepository 
-        extends JpaRepository<TipoContato, Long> {
+        extends JpaSpecificationRepository<TipoContato, Long> {
     
 }

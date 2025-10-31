@@ -5,24 +5,21 @@
 package br.edu.ifms.estoque.tipoContato;
 
 import br.edu.ifms.estoque.arquitetura.dto.DefaultRequest;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 /**
  *
  * @author 1513003
  */
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@SuperBuilder
 public class TipoContatoRequest extends DefaultRequest {
+
     private String mascara;
 
-    public TipoContatoRequest() {
-    }
-
-    public TipoContatoRequest(String nome, String mascara) {
-        super(nome);
-        this.mascara = mascara;
-    }
-
-    public String getMascara() {
-        return mascara;
-    }
-    
 }

@@ -8,34 +8,32 @@ import br.edu.ifms.estoque.logradouro.Logradouro;
 import br.edu.ifms.estoque.arquitetura.model.TablePerClassBase;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.SequenceGenerator;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 /**
  *
  * @author 1513003
  */
-@Entity
-@SequenceGenerator(
-        sequenceName = "tipo_logradouro_sequence",
-        name = "tablePerClassBase",
-        allocationSize = 1
-)
 @Data
 @EqualsAndHashCode(
         callSuper = true,
         onlyExplicitlyIncluded = true
 )
+@ToString(callSuper = true, onlyExplicitlyIncluded = true)
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
+
+@Entity
 public class TipoLogradouro extends TablePerClassBase {
 
+    @ToString.Include
     private String sigla;
 
     @OneToMany(mappedBy = "tipoLogradouro")

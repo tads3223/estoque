@@ -4,118 +4,36 @@
  */
 package br.edu.ifms.estoque.produto;
 
+import br.edu.ifms.estoque.arquitetura.dto.DefaultResponse;
 import br.edu.ifms.estoque.subgrupoProduto.SubgrupoProdutoResponse;
 import br.edu.ifms.estoque.unidadeMedida.UnidadeMedidaResponse;
 import br.edu.ifms.estoque.marca.MarcaResponse;
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.Instant;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 /**
  *
  * @author 1513003
  */
-public class ProdutoResponse {
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@SuperBuilder
+public class ProdutoResponse extends DefaultResponse {
     
-    private Long id;
-    private String nome;
     private String descricao;
     private Integer estoqueMinimo;
     
     private BigDecimal preco;
     private BigDecimal estoque;
-    private LocalDate dataUltimaCompra;
+    private Instant dataUltimaCompra;
     
-    private SubgrupoProdutoResponse subGrupo;
+    private SubgrupoProdutoResponse subgrupo;
     private UnidadeMedidaResponse unidadeMedida;
     private MarcaResponse marca;
-
-    public ProdutoResponse() {
-    }
-
-    public ProdutoResponse(Long id, String nome) {
-        this.id = id;
-        this.nome = nome;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public Integer getEstoqueMinimo() {
-        return estoqueMinimo;
-    }
-
-    public void setEstoqueMinimo(Integer estoqueMinimo) {
-        this.estoqueMinimo = estoqueMinimo;
-    }
-
-    public BigDecimal getPreco() {
-        return preco;
-    }
-
-    public void setPreco(BigDecimal preco) {
-        this.preco = preco;
-    }
-
-    public BigDecimal getEstoque() {
-        return estoque;
-    }
-
-    public void setEstoque(BigDecimal estoque) {
-        this.estoque = estoque;
-    }
-
-    public LocalDate getDataUltimaCompra() {
-        return dataUltimaCompra;
-    }
-
-    public void setDataUltimaCompra(LocalDate dataUltimaCompra) {
-        this.dataUltimaCompra = dataUltimaCompra;
-    }
-
-    public SubgrupoProdutoResponse getSubGrupo() {
-        return subGrupo;
-    }
-
-    public void setSubGrupo(SubgrupoProdutoResponse subGrupo) {
-        this.subGrupo = subGrupo;
-    }
-
-    public UnidadeMedidaResponse getUnidadeMedida() {
-        return unidadeMedida;
-    }
-
-    public void setUnidadeMedida(UnidadeMedidaResponse unidadeMedida) {
-        this.unidadeMedida = unidadeMedida;
-    }
-
-    public MarcaResponse getMarca() {
-        return marca;
-    }
-
-    public void setMarca(MarcaResponse marca) {
-        this.marca = marca;
-    }
-    
     
 }

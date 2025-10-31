@@ -4,54 +4,40 @@
  */
 package br.edu.ifms.estoque.compra;
 
+import br.edu.ifms.estoque.produto.Produto;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import java.math.BigDecimal;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
 /**
  *
  * @author 1513003
  */
+@Data
+@SuperBuilder(toBuilder = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(onlyExplicitlyIncluded = true)
+@AllArgsConstructor
+@NoArgsConstructor
+
 @Entity
 public class ItemCompra {
     
+    @EqualsAndHashCode.Include
     @EmbeddedId
     private ItemCompraId id;
     
     private BigDecimal quantidade;
     private BigDecimal valorUnitario;
-
-    public ItemCompra() {
-    }
-
-    public ItemCompra(ItemCompraId id, BigDecimal quantidade, BigDecimal valorUnitario) {
-        this.id = id;
-        this.quantidade = quantidade;
-        this.valorUnitario = valorUnitario;
-    }
-
-    public ItemCompraId getId() {
-        return id;
-    }
-
-    public void setId(ItemCompraId id) {
-        this.id = id;
-    }
-
-    public BigDecimal getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(BigDecimal quantidade) {
-        this.quantidade = quantidade;
-    }
-
-    public BigDecimal getValorUnitario() {
-        return valorUnitario;
-    }
-
-    public void setValorUnitario(BigDecimal valorUnitario) {
-        this.valorUnitario = valorUnitario;
-    }
+    
+    @ManyToOne(optional = false)
+    private Produto produto;
     
 }

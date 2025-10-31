@@ -8,6 +8,7 @@ import br.edu.ifms.estoque.arquitetura.exceptions.ResourceNotFoundException;
 import br.edu.ifms.estoque.arquitetura.mapper.IMapper;
 import br.edu.ifms.estoque.arquitetura.repository.JpaSpecificationRepository;
 import java.util.List;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -24,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @param <UPDATE_DTO> Representa uma classe de DTO para requisição para
  * atualização de objetos no banco de dados, na pasta dto
  */
+@Service
 public abstract class ServiceAdapter<E, K, DTO_RESPONSE, CREATE_DTO, UPDATE_DTO>
         implements IService<E, K, DTO_RESPONSE, CREATE_DTO, UPDATE_DTO> {
 

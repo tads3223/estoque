@@ -7,19 +7,17 @@ package br.edu.ifms.estoque.marca;
 import br.edu.ifms.estoque.arquitetura.model.ElementoBase;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 /**
  *
  * @author 1513003
  */
+@SuperBuilder
+@NoArgsConstructor
+
 @Entity
 @DiscriminatorValue("MARCA")
 public class Marca extends ElementoBase {
-
-    public Marca() {
-    }
-    
-    public Marca(Long id, String nome) {
-        super(id, nome);
-    }
 }

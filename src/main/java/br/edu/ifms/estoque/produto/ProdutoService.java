@@ -4,11 +4,8 @@
  */
 package br.edu.ifms.estoque.produto;
 
-import br.edu.ifms.estoque.produto.ProdutoRequest;
-import br.edu.ifms.estoque.produto.ProdutoResponse;
-import br.edu.ifms.estoque.produto.Produto;
-import br.edu.ifms.estoque.arquitetura.service.IService;
-import java.util.List;
+import br.edu.ifms.estoque.arquitetura.service.ServiceAdapter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,32 +13,14 @@ import org.springframework.stereotype.Service;
  * @author 1513003
  */
 @Service
-public class ProdutoService implements 
-        IService<Produto, Long, ProdutoResponse, ProdutoRequest, ProdutoRequest>{
+public class ProdutoService extends 
+        ServiceAdapter<Produto, Long, ProdutoResponse, ProdutoRequest, ProdutoRequest>{
 
-    @Override
-    public Produto create(ProdutoRequest request) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Produto update(Long id, ProdutoRequest request) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void deleteById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Produto findBy(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public List<Produto> list() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    @Autowired
+    public ProdutoService(
+            ProdutoRepository repository, 
+            ProdutoMapper mapper) {
+        super(repository, mapper);
     }
     
 }

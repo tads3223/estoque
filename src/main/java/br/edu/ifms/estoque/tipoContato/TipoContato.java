@@ -6,35 +6,30 @@ package br.edu.ifms.estoque.tipoContato;
 
 import br.edu.ifms.estoque.arquitetura.model.JoinedBase;
 import jakarta.persistence.Entity;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
 /**
  *
  * @author 1513003
  */
+@Data
+@EqualsAndHashCode(
+        callSuper = true,
+        onlyExplicitlyIncluded = true
+)
+@ToString(callSuper = true, onlyExplicitlyIncluded = true)
+@SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
+
 @Entity
 public class TipoContato extends JoinedBase {
-    
+
+    @ToString.Include
     private String mascara;
-
-    public TipoContato() {
-        super();
-    }
-
-    public TipoContato(Long id, String nome, String mascara) {
-        super(id, nome);
-        this.mascara = mascara;
-    }
-
-    public TipoContato(String nome, String mascara) {
-        super(null, nome);
-        this.mascara = mascara;
-    }
-
-    public String getMascara() {
-        return mascara;
-    }
-
-    public void setMascara(String mascara) {
-        this.mascara = mascara;
-    }
 }

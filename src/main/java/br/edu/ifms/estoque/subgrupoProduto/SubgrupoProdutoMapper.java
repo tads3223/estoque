@@ -8,6 +8,7 @@ import br.edu.ifms.estoque.arquitetura.mapper.IMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
+import org.mapstruct.factory.Mappers;
 
 /**
  *
@@ -16,6 +17,9 @@ import org.mapstruct.MappingTarget;
 @Mapper
 public interface SubgrupoProdutoMapper extends
         IMapper<SubgrupoProduto, SubgrupoProdutoResponse, SubgrupoProdutoRequest, SubgrupoProdutoRequest> {
+    
+    public SubgrupoProdutoMapper INSTANCE = Mappers
+            .getMapper(SubgrupoProdutoMapper.class);
 
     public SubgrupoParentResponse toParentDto(SubgrupoProduto entity);
     

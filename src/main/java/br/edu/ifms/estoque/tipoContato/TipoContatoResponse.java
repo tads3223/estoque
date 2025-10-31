@@ -5,24 +5,20 @@
 package br.edu.ifms.estoque.tipoContato;
 
 import br.edu.ifms.estoque.arquitetura.dto.DefaultResponse;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 /**
  *
  * @author 1513003
  */
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@SuperBuilder
 public class TipoContatoResponse extends DefaultResponse {
     
     private String mascara;
-
-    public TipoContatoResponse() {
-    }
-
-    public TipoContatoResponse(Long id, String nome, String mascara) {
-        super(id, nome);
-        this.mascara = mascara;
-    }
-
-    public String getMascara() {
-        return mascara;
-    }
 }

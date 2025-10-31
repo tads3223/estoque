@@ -4,18 +4,18 @@
  */
 package br.edu.ifms.estoque.perfil;
 
+import br.edu.ifms.estoque.arquitetura.model.MappedBase;
 import br.edu.ifms.estoque.usuario.model.Usuario;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.SequenceGenerator;
 import java.util.List;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 import org.springframework.security.core.GrantedAuthority;
 
 /**
@@ -23,28 +23,22 @@ import org.springframework.security.core.GrantedAuthority;
  * @author 1513003
  */
 @Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@ToString(onlyExplicitlyIncluded = true)
-@Builder
+@SuperBuilder
+@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
+@ToString(callSuper = true, onlyExplicitlyIncluded = true)
 @AllArgsConstructor
 @NoArgsConstructor
+
 @Entity
-public class Perfil implements GrantedAuthority {
-    @EqualsAndHashCode.Include
-    @ToString.Include
-    @Id
-    @GeneratedValue
-    private Long id;
-    
-    @ToString.Include
-    private String nome;
-    
+@SequenceGenerator(sequenceName = "perfil_sequence", name = "mappedSequence", allocationSize = 1)
+public class Perfil extends MappedBase implements GrantedAuthority {
+
     @ManyToMany(mappedBy = "perfis")
     private List<Usuario> usuarios;
 
     @Override
     public String getAuthority() {
-        return this.nome;
+        return this.getNome();
     }
-    
+
 }

@@ -5,18 +5,17 @@
 package br.edu.ifms.estoque.marca;
 
 import br.edu.ifms.estoque.arquitetura.dto.DefaultResponse;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 /**
  *
  * @author 1513003
  */
+@Getter
+@NoArgsConstructor
+@SuperBuilder
 public class MarcaResponse extends DefaultResponse {
-
-    public MarcaResponse() {
-    }
-
-    public MarcaResponse(Long id, String nome) {
-        super(id, nome);
-    }
     
 }

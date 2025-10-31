@@ -4,19 +4,17 @@
  */
 package br.edu.ifms.estoque.perfil;
 
-import lombok.AllArgsConstructor;
+import br.edu.ifms.estoque.arquitetura.dto.DefaultResponse;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 /**
  *
  * @author 1513003
  */
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
-public class PerfilResponse {
-    
-    private Long id;
-    private String nome;
+@SuperBuilder
+public class PerfilResponse extends DefaultResponse {
 }

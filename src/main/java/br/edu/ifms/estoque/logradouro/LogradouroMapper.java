@@ -4,8 +4,6 @@
  */
 package br.edu.ifms.estoque.logradouro;
 
-import br.edu.ifms.estoque.logradouro.LogradouroRequest;
-import br.edu.ifms.estoque.logradouro.LogradouroResponse;
 import br.edu.ifms.estoque.tipoLogradouro.TipoLogradouroNotFoundException;
 import br.edu.ifms.estoque.arquitetura.mapper.IMapper;
 import br.edu.ifms.estoque.tipoLogradouro.TipoLogradouroMapper;

@@ -10,7 +10,7 @@
 -- Dados de usuario
 INSERT INTO perfil (id, nome) VALUES
 (1, 'ROLE_ADMIN'),(2, 'ROLE_USUARIO');
-ALTER SEQUENCE perfil_seq RESTART WITH 3;
+ALTER SEQUENCE perfil_sequence RESTART WITH 3;
 
 INSERT INTO usuario (login, auth_provider, bloqueado, email, nome, status, senha) VALUES
 ('admin', 'LOCAL', false, 'admin@email.com', 'Administrador', 'ATIVO', '$2a$10$Z9c.3MlrnJ44YsiSW3JCWOlJPRrXUoA.I1c4DypDE4SzfCp1wj3MK');

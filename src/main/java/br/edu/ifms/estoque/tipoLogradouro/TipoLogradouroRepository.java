@@ -4,12 +4,7 @@
  */
 package br.edu.ifms.estoque.tipoLogradouro;
 
-import br.edu.ifms.estoque.tipoLogradouro.TipoLogradouro;
-import java.util.List;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import br.edu.ifms.estoque.arquitetura.repository.JpaSpecificationRepository;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -17,19 +12,7 @@ import org.springframework.stereotype.Repository;
  * @author 1513003
  */
 @Repository
-public interface TipoLogradouroRepository 
-        extends JpaRepository<TipoLogradouro, Long> {
+public interface TipoLogradouroRepository
+        extends JpaSpecificationRepository<TipoLogradouro, Long> {
     
-    @Query(value = "SELECT tp FROM TipoLogradouro tp")
-    public List<TipoLogradouro> listarTiposDeLogradouros();
-    
-    @Query(value = "SELECT tp FROM TipoLogradouro tp WHERE tp.nome LIKE :nome")
-    public List<TipoLogradouro> listarPorNome(@Param("nome") String nome);
-    
-    @Modifying
-    @Query(value = """
-                   UPDATE TipoLogradouro SET nome = ?2, sigla = ?3
-                   WHERE id = ?1
-                   """)
-    public Integer atualizar(Long id, String nome, String sigla);
 }

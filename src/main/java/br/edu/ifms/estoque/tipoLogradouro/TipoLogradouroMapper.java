@@ -5,59 +5,30 @@
 package br.edu.ifms.estoque.tipoLogradouro;
 
 import br.edu.ifms.estoque.arquitetura.mapper.IMapper;
-import br.edu.ifms.estoque.tipoLogradouro.TipoLogradouroRequest;
-import br.edu.ifms.estoque.tipoLogradouro.TipoLogradouroResponse;
-import java.util.List;
-import java.util.stream.Collectors;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
+import org.mapstruct.factory.Mappers;
 
 /**
  *
  * @author 1513003
  */
-@Component
-public class TipoLogradouroMapper implements 
-        IMapper<TipoLogradouro, TipoLogradouroResponse,
-        TipoLogradouroRequest, TipoLogradouroRequest> {
-    
-    @Override
-    public TipoLogradouro toEntity(
-            TipoLogradouroRequest dto
-    ) {
-        var entity = TipoLogradouro.builder()
-                .nome(dto.getNome())
-                .sigla(dto.getSigla())
-                .build();
-        return entity;
-    }
-    
-    @Override
-    public TipoLogradouroResponse toDto(
-            TipoLogradouro entity
-    ) {
-        TipoLogradouroResponse dto = new TipoLogradouroResponse(
-                entity.getId(),
-                entity.getNome(),
-                entity.getSigla()
-        );
-        return dto;
-    }
-    
-    @Override
-    public List<TipoLogradouroResponse> toListDto(
-            List<TipoLogradouro> list
-    ) {
-        return list.stream()
-                .map((entity) -> toDto(entity))
-                .collect(Collectors.toList());
-    }
+@Mapper
+public interface TipoLogradouroMapper extends
+        IMapper<TipoLogradouro, TipoLogradouroResponse, TipoLogradouroRequest, TipoLogradouroRequest> {
 
+    public TipoLogradouroMapper INSTANCE = Mappers
+            .getMapper(TipoLogradouroMapper.class);
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "logradouros", ignore = true)
     @Override
-    public TipoLogradouro update(
-            TipoLogradouroRequest request, 
-            TipoLogradouro entity) {
-        entity.setNome(request.getNome());
-        entity.setSigla(request.getSigla());
-        return entity;
-    }
+    public TipoLogradouro toEntity(TipoLogradouroRequest request);
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "logradouros", ignore = true)
+    @Override
+    public TipoLogradouro update(TipoLogradouroRequest request, @MappingTarget TipoLogradouro entity);
+
 }
