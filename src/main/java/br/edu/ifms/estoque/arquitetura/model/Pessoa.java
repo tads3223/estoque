@@ -12,68 +12,42 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
 /**
  *
  * @author 1513003
  */
+@SuperBuilder
+@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(onlyExplicitlyIncluded = true)
+@AllArgsConstructor
+@NoArgsConstructor
+
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "classe_pessoa")
-public abstract class Pessoa implements IBaseClass {
+public abstract class Pessoa {
 
+    @EqualsAndHashCode.Include
+    @ToString.Include
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    @ToString.Include
     private String nome;
+    
+    @ToString.Include
     private String nomeSocial;
+    
+    @ToString.Include
     private PersonType tipoPessoa;
-
-    public Pessoa() {
-    }
-
-    public Pessoa(Long id, String nome, String nomeSocial, PersonType tipoPessoa) {
-        this.id = id;
-        this.nome = nome;
-        this.nomeSocial = nomeSocial;
-    }
-
-    public Pessoa(String nome, String nomeSocial, PersonType tipoPessoa) {
-        this.nome = nome;
-        this.nomeSocial = nomeSocial;
-        this.tipoPessoa = tipoPessoa;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getNomeSocial() {
-        return nomeSocial;
-    }
-
-    public void setNomeSocial(String nomeSocial) {
-        this.nomeSocial = nomeSocial;
-    }
-
-    public PersonType getTipoPessoa() {
-        return tipoPessoa;
-    }
-
-    public void setTipoPessoa(PersonType tipoPessoa) {
-        this.tipoPessoa = tipoPessoa;
-    }
 
 }

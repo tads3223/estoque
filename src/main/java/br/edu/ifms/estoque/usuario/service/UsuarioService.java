@@ -14,7 +14,6 @@ import br.edu.ifms.estoque.usuario.mapper.UsuarioMapper;
 import br.edu.ifms.estoque.usuario.model.Usuario;
 import br.edu.ifms.estoque.usuario.repository.UsuarioRepository;
 import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -29,10 +28,11 @@ public class UsuarioService
         extends ServiceAdapter<Usuario, String, UsuarioResponse, UsuarioCreateRequest, UsuarioUpdateRequest>
         implements UserDetailsService {
 
-    @Autowired
-    public UsuarioService(UsuarioRepository repository) {
-        super.repository = repository;
-        super.mapper = UsuarioMapper.INSTANCE;
+    public UsuarioService(
+            UsuarioRepository repository, 
+            UsuarioMapper mapper
+    ) {
+        super(repository, mapper);
     }
     
     @Override
@@ -59,7 +59,8 @@ public class UsuarioService
     
     @Transactional
     public Usuario register(UsuarioRegisterRequest request) {
-        var entity = UsuarioMapper.INSTANCE.toEntity(request);
+        var usuarioMapper = (UsuarioMapper) super.mapper;
+        var entity = usuarioMapper.toEntity(request);
         return save(entity);
     }
     

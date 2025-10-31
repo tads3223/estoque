@@ -6,34 +6,27 @@ package br.edu.ifms.estoque.unidadeMedida;
 
 import br.edu.ifms.estoque.arquitetura.model.JoinedBase;
 import jakarta.persistence.Entity;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
 /**
  *
  * @author 1513003
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
+@SuperBuilder
+@AllArgsConstructor
+@NoArgsConstructor
+
 @Entity
 public class UnidadeMedida extends JoinedBase {
     
     private Boolean fracionado;
-
-    public UnidadeMedida() {
-    }
-
-    public UnidadeMedida(
-            Long id, 
-            String nome,
-            Boolean fracionado
-    ) {
-        super(id, nome);
-        this.fracionado = fracionado;
-    }
-
-    public Boolean getFracionado() {
-        return fracionado;
-    }
-
-    public void setFracionado(Boolean fracionado) {
-        this.fracionado = fracionado;
-    }
     
 }

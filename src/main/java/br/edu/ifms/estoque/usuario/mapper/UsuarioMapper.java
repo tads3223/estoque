@@ -21,10 +21,12 @@ import org.mapstruct.factory.Mappers;
  * @author 1513003
  */
 @Mapper(uses = { PerfilMapper.class })
-public interface UsuarioMapper extends IMapper<Usuario, UsuarioResponse, UsuarioCreateRequest, UsuarioUpdateRequest> {
+public interface UsuarioMapper 
+        extends IMapper<Usuario, UsuarioResponse, UsuarioCreateRequest, UsuarioUpdateRequest> {
     
-    public UsuarioMapper INSTANCE = Mappers.getMapper(UsuarioMapper.class);
-
+    public UsuarioMapper INSTANCE = Mappers
+            .getMapper(UsuarioMapper.class);
+    
     @Mapping(target = "bloqueado", ignore = true)
     @Mapping(target = "status", ignore = true)
     @Mapping(target = "perfis", ignore = true)

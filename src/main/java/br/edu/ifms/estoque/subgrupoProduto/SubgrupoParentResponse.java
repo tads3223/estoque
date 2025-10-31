@@ -5,18 +5,17 @@
 package br.edu.ifms.estoque.subgrupoProduto;
 
 import br.edu.ifms.estoque.arquitetura.dto.DefaultResponse;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 /**
  *
  * @author 1513003
  */
-public class SubgrupoParent extends DefaultResponse {
-
-    public SubgrupoParent() {
-    }
-
-    public SubgrupoParent(Long id, String nome) {
-        super(id, nome);
-    }
+@Getter
+@NoArgsConstructor
+@SuperBuilder
+public class SubgrupoParentResponse extends DefaultResponse {
 
 }

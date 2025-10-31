@@ -5,6 +5,7 @@
 package br.edu.ifms.estoque.arquitetura.exceptions;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
 public class MessageApiError {
 
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
-    private LocalDateTime timestamp;
+    private Instant timestamp;
     private Integer code;
     private String status;
     private List<String> errors;
@@ -23,18 +24,18 @@ public class MessageApiError {
     public MessageApiError() {
     }
 
-    public MessageApiError(LocalDateTime timestamp, Integer code, String status, List<String> errors) {
+    public MessageApiError(Instant timestamp, Integer code, String status, List<String> errors) {
         this.timestamp = timestamp;
         this.code = code;
         this.status = status;
         this.errors = errors;
     }
 
-    public LocalDateTime getTimestamp() {
+    public Instant getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
+    public void setTimestamp(Instant timestamp) {
         this.timestamp = timestamp;
     }
 

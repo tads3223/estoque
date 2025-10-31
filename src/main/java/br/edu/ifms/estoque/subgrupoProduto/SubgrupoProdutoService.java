@@ -6,11 +6,6 @@ package br.edu.ifms.estoque.subgrupoProduto;
 
 import br.edu.ifms.estoque.produto.IAgrupoProdutoDTO;
 import br.edu.ifms.estoque.arquitetura.service.ServiceAdapter;
-import br.edu.ifms.estoque.subgrupoProduto.SubgrupoProdutoRequest;
-import br.edu.ifms.estoque.subgrupoProduto.SubgrupoProdutoResponse;
-import br.edu.ifms.estoque.subgrupoProduto.SubgrupoProdutoMapper;
-import br.edu.ifms.estoque.subgrupoProduto.SubgrupoProduto;
-import br.edu.ifms.estoque.subgrupoProduto.SubgrupoProdutoRepository;
 import java.util.List;
 import org.springframework.stereotype.Service;
 

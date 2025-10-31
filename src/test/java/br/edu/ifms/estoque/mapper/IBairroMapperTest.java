@@ -4,9 +4,9 @@
  */
 package br.edu.ifms.estoque.mapper;
 
-import br.edu.ifms.estoque.bairro.IBairroMapper;
 import br.edu.ifms.estoque.bairro.BairroResponse;
 import br.edu.ifms.estoque.bairro.Bairro;
+import br.edu.ifms.estoque.bairro.BairroMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +25,7 @@ public class IBairroMapperTest {
                 .id(1L)
                 .nome("Centro")
                 .build();
-        BairroResponse bairroResponse = IBairroMapper.INSTANCE
+        BairroResponse bairroResponse = BairroMapper.INSTANCE
                 .toDto(b1);
         Assertions.assertEquals(
                 b1.getNome(), 

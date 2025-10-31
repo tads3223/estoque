@@ -5,11 +5,6 @@
 package br.edu.ifms.estoque.unidadeMedida;
 
 import br.edu.ifms.estoque.arquitetura.service.ServiceAdapter;
-import br.edu.ifms.estoque.unidadeMedida.UnidadeMedidaRequest;
-import br.edu.ifms.estoque.unidadeMedida.UnidadeMedidaResponse;
-import br.edu.ifms.estoque.unidadeMedida.UnidadeMedidaMapper;
-import br.edu.ifms.estoque.unidadeMedida.UnidadeMedida;
-import br.edu.ifms.estoque.unidadeMedida.UnidadeMedidaRepository;
 import org.springframework.stereotype.Service;
 
 /**

@@ -29,7 +29,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public abstract class TablePerClassBase implements IBaseClass {
+public abstract class TablePerClassBase {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tablePerClassBase")
     @EqualsAndHashCode.Include

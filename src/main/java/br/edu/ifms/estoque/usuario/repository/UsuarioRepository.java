@@ -4,10 +4,10 @@
  */
 package br.edu.ifms.estoque.usuario.repository;
 
+import br.edu.ifms.estoque.arquitetura.repository.JpaSpecificationRepository;
 import br.edu.ifms.estoque.security.enumeration.SocialAuthProvider;
 import br.edu.ifms.estoque.usuario.model.Usuario;
 import java.util.Optional;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
  * @author 1513003
  */
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, String> {
+public interface UsuarioRepository extends JpaSpecificationRepository<Usuario, String> {
     
     Optional<Usuario> findByLoginAndAuthProvider(String login, SocialAuthProvider provider);
     

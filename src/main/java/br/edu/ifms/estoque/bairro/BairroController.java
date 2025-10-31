@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Tag(name = "bairro", description = "Recurso de controle de Bairros")
 @RestController
-@RequestMapping("/bairro")
+@RequestMapping("/api/bairro")
 public class BairroController 
         extends CRUDDefaultControllerAdapter<Bairro, Long, BairroResponse, BairroRequest, BairroRequest> {
 

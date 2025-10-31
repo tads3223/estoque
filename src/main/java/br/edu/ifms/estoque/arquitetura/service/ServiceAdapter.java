@@ -6,8 +6,8 @@ package br.edu.ifms.estoque.arquitetura.service;
 
 import br.edu.ifms.estoque.arquitetura.exceptions.ResourceNotFoundException;
 import br.edu.ifms.estoque.arquitetura.mapper.IMapper;
+import br.edu.ifms.estoque.arquitetura.repository.JpaSpecificationRepository;
 import java.util.List;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -27,9 +27,17 @@ import org.springframework.transaction.annotation.Transactional;
 public abstract class ServiceAdapter<E, K, DTO_RESPONSE, CREATE_DTO, UPDATE_DTO>
         implements IService<E, K, DTO_RESPONSE, CREATE_DTO, UPDATE_DTO> {
 
-    protected JpaRepository<E, K> repository;
-    protected IMapper<E, DTO_RESPONSE, CREATE_DTO, UPDATE_DTO> mapper;
+    protected final JpaSpecificationRepository<E, K> repository;
+    protected final IMapper<E, DTO_RESPONSE, CREATE_DTO, UPDATE_DTO> mapper;
 
+    public ServiceAdapter(
+            JpaSpecificationRepository<E, K> repository, 
+            IMapper<E, DTO_RESPONSE, CREATE_DTO, UPDATE_DTO> mapper
+    ) {
+        this.repository = repository;
+        this.mapper = mapper;
+    }
+    
     @Transactional
     @Override
     public E create(CREATE_DTO request) {
@@ -60,8 +68,7 @@ public abstract class ServiceAdapter<E, K, DTO_RESPONSE, CREATE_DTO, UPDATE_DTO>
      */
     @Override
     public void deleteById(K id) {
-        var entity = findBy(id);
-        repository.delete(entity);
+        repository.deleteById(id);
     }
 
     @Override

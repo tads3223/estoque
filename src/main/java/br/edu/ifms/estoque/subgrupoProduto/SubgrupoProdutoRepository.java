@@ -4,10 +4,9 @@
  */
 package br.edu.ifms.estoque.subgrupoProduto;
 
+import br.edu.ifms.estoque.arquitetura.repository.JpaSpecificationRepository;
 import br.edu.ifms.estoque.produto.IAgrupoProdutoDTO;
-import br.edu.ifms.estoque.subgrupoProduto.SubgrupoProduto;
 import java.util.List;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -18,7 +17,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface SubgrupoProdutoRepository
-        extends JpaRepository<SubgrupoProduto, Long>
+        extends JpaSpecificationRepository<SubgrupoProduto, Long>
 {
     @Query(value = """
                    SELECT sb FROM SubgrupoProduto sb

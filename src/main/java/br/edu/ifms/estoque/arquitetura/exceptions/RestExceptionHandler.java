@@ -4,6 +4,7 @@
  */
 package br.edu.ifms.estoque.arquitetura.exceptions;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,7 +32,7 @@ public class RestExceptionHandler {
                 .map(error -> error.getField() + ": " + error.getDefaultMessage())
                 .collect(Collectors.toList());
         MessageApiError apiError = new MessageApiError(
-                LocalDateTime.now(),
+                Instant.now(),
                 HttpStatus.BAD_REQUEST.value(),
                 HttpStatus.BAD_REQUEST.name(),
                 errorList);
@@ -45,7 +46,7 @@ public class RestExceptionHandler {
             DataIntegrityViolationException ex
     ) {
         MessageApiError apiError = new MessageApiError(
-                LocalDateTime.now(),
+                Instant.now(),
                 HttpStatus.NOT_FOUND.value(),
                 HttpStatus.NOT_FOUND.name(),
                 List.of(ex.getMessage())
@@ -61,7 +62,7 @@ public class RestExceptionHandler {
             RuntimeException ex
     ) {
         MessageApiError apiError = new MessageApiError(
-                LocalDateTime.now(),
+                Instant.now(),
                 HttpStatus.NOT_FOUND.value(),
                 HttpStatus.NOT_FOUND.name(),
                 List.of(ex.getMessage())

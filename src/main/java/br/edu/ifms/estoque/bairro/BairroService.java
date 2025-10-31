@@ -4,11 +4,6 @@
  */
 package br.edu.ifms.estoque.bairro;
 
-import br.edu.ifms.estoque.bairro.BairroRequest;
-import br.edu.ifms.estoque.bairro.BairroResponse;
-import br.edu.ifms.estoque.bairro.BairroMapper;
-import br.edu.ifms.estoque.bairro.Bairro;
-import br.edu.ifms.estoque.bairro.BairroRepository;
 import br.edu.ifms.estoque.arquitetura.service.ServiceAdapter;
 import org.springframework.stereotype.Service;
 

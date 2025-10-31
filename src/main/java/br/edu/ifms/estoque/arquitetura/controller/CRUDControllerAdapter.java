@@ -22,17 +22,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.util.UriComponentsBuilder;
 
 /**
+ * Adapter Padrão. Adapter da controller utilizado para implementar endpoints
+ * comum a todas as entidades que precisam ser manipuladas no sistema. <br/>
+ * Ela considera somente a implementação dos métodos <b>Create</b> e <b>List</b>
+ * que não dependem de atributos específicos.
  *
  * @author 1513003
- * @param <E>   Classe que representa o objeto que será manipulado na controller
+ * @param <E> Classe que representa o objeto que será manipulado na controller
  * @param <K> Classe que representa a chave primária do objeto que será
  * manipulado pelos serviços
  * @param <DTO_RESPONSE> Classe DTO que representa a resposta a ser encaminhada
  * para o cliente requisitante
- * @param <DTO_CREATE_REQUEST> Classe DTO que representa um objeto da classe DTO que
- * contem os atributos para criação de uma entidade no banco de dados do sistema
- * @param <DTO_UPDATE_REQUEST> Classe DTO que representa um objeto da classe DTO que
- * contem os atributos para alteração de dados de uma entidade no banco de dados do sistema
+ * @param <DTO_CREATE_REQUEST> Classe DTO que representa um objeto da classe DTO
+ * que contem os atributos para criação de uma entidade no banco de dados do
+ * sistema
+ * @param <DTO_UPDATE_REQUEST> Classe DTO que representa um objeto da classe DTO
+ * que contem os atributos para alteração de dados de uma entidade no banco de
+ * dados do sistema
  */
 public abstract class CRUDControllerAdapter<E, K, DTO_RESPONSE, DTO_CREATE_REQUEST, DTO_UPDATE_REQUEST>
         implements IController<K, DTO_RESPONSE, DTO_CREATE_REQUEST, DTO_UPDATE_REQUEST> {
@@ -41,7 +47,7 @@ public abstract class CRUDControllerAdapter<E, K, DTO_RESPONSE, DTO_CREATE_REQUE
     protected final IMapper<E, DTO_RESPONSE, DTO_CREATE_REQUEST, DTO_UPDATE_REQUEST> mapper;
 
     public CRUDControllerAdapter(
-            IService<E, K, DTO_RESPONSE, DTO_CREATE_REQUEST, DTO_UPDATE_REQUEST> service, 
+            IService<E, K, DTO_RESPONSE, DTO_CREATE_REQUEST, DTO_UPDATE_REQUEST> service,
             IMapper<E, DTO_RESPONSE, DTO_CREATE_REQUEST, DTO_UPDATE_REQUEST> mapper
     ) {
         this.service = service;
@@ -52,8 +58,10 @@ public abstract class CRUDControllerAdapter<E, K, DTO_RESPONSE, DTO_CREATE_REQUE
      * Método para criar URI.Método utilizado para criar a URI que será
      * devolvida na resposta ao sistema requisitante.
      *
-     * @param response  Objeto da classe de resposta que contem o ID gerado no banco de dados
-     * @param uriBuilder    Objeto da classe UriComponentsBuilder utilizado para criar a URI.
+     * @param response Objeto da classe de resposta que contem o ID gerado no
+     * banco de dados
+     * @param uriBuilder Objeto da classe UriComponentsBuilder utilizado para
+     * criar a URI.
      * @return
      */
     protected abstract URI createURI(DTO_RESPONSE response, UriComponentsBuilder uriBuilder);
@@ -103,5 +111,5 @@ public abstract class CRUDControllerAdapter<E, K, DTO_RESPONSE, DTO_CREATE_REQUE
         var dtoItems = mapper.toListDto(items);
         return okListResponse(dtoItems);
     }
-    
+
 }
