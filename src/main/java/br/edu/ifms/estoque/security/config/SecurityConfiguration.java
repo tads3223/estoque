@@ -16,7 +16,6 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -99,15 +98,20 @@ public class SecurityConfiguration {
             HttpSecurity http,
             JwtDecoder jwtDecoder
     ) throws Exception {
+        // Lista de caminhos públicos, incluindo Swagger/OpenAPI
+        String[] publicPaths = {
+            "/api/auth/token", // Permite acesso ao endpoint de token para usuários deslogados
+            "/oauth2/**",  // Permite o fluxo de login social OIDC
+            "/v3/api-docs/**", // ENDPOINTS DE DEFINIÇÃO
+            "/swagger-ui/**" // INTERFACE GRÁFICA
+        };
+        
         http
                 .csrf(csrf -> csrf.disable())
                 // 2.1 Configurações de acesso à URL
                 .authorizeHttpRequests(authorize
                         -> authorize
-                        // Permite acesso ao endpoint de token para usuários deslogados
-                        .requestMatchers("/api/auth/token").permitAll()
-                        // Permite o fluxo de login social OIDC
-                        .requestMatchers("/oauth2/**").permitAll()
+                        .requestMatchers(publicPaths).permitAll()
                         // Protege endpoints de administração
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
