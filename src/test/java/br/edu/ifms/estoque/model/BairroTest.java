@@ -4,6 +4,7 @@
  */
 package br.edu.ifms.estoque.model;
 
+import br.edu.ifms.estoque.bairro.Bairro;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -4,8 +4,9 @@
  */
 package br.edu.ifms.estoque.mapper;
 
-import br.edu.ifms.estoque.dto.BairroResponse;
-import br.edu.ifms.estoque.model.Bairro;
+import br.edu.ifms.estoque.bairro.IBairroMapper;
+import br.edu.ifms.estoque.bairro.BairroResponse;
+import br.edu.ifms.estoque.bairro.Bairro;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

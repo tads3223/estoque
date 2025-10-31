@@ -4,7 +4,8 @@
  */
 package br.edu.ifms.estoque.repository;
 
-import br.edu.ifms.estoque.model.SubgrupoProduto;
+import br.edu.ifms.estoque.subgrupoProduto.SubgrupoProdutoRepository;
+import br.edu.ifms.estoque.subgrupoProduto.SubgrupoProduto;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;

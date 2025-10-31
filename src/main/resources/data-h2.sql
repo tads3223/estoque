@@ -7,6 +7,18 @@
  * Created: 23 de jun. de 2025
  */
 
+-- Dados de usuario
+INSERT INTO perfil (id, nome) VALUES
+(1, 'ROLE_ADMIN'),(2, 'ROLE_USUARIO');
+ALTER SEQUENCE perfil_seq RESTART WITH 3;
+
+INSERT INTO usuario (login, auth_provider, bloqueado, email, nome, status, senha) VALUES
+('admin', 'LOCAL', false, 'admin@email.com', 'Administrador', 'ATIVO', '$2a$10$Z9c.3MlrnJ44YsiSW3JCWOlJPRrXUoA.I1c4DypDE4SzfCp1wj3MK');
+
+INSERT INTO perfis_usuario (login_id, perfil_id) VALUES
+('admin', 1);
+
+
 -- INSERT INTO subgrupo
 -- #Referência: https://listenx.com.br/blog/lista-de-produtos-para-montar-um-supermercado/#frios-e-produtos-refrigerados
 INSERT INTO subgrupo_produto(id, nome, grupo_produto_id) VALUES

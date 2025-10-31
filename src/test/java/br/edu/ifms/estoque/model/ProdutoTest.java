@@ -4,7 +4,8 @@
  */
 package br.edu.ifms.estoque.model;
 
-import br.edu.ifms.estoque.model.heranca.TablePerClassBase;
+import br.edu.ifms.estoque.produto.Produto;
+import br.edu.ifms.estoque.arquitetura.model.TablePerClassBase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
