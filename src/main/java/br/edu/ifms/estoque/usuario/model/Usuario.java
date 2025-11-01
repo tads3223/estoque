@@ -14,6 +14,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.UniqueConstraint;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -84,6 +86,14 @@ public class Usuario implements UserDetails {
     // Método para forçar a invalidação de todos os tokens antigos
     public void generateNewTokenSecurityKey() {
         this.tokenSecurityKey = UUID.randomUUID().toString();
+    }
+    
+    @PrePersist
+    @PreUpdate
+    public void ensureTokenSecurityKey() {
+        if (this.tokenSecurityKey == null) {
+            this.tokenSecurityKey = UUID.randomUUID().toString();
+        }
     }
     
     public void add(Perfil value) {

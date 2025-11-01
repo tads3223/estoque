@@ -41,7 +41,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class AuthService {
-    
+
     // O tempo de validade do token de redefinição
     private static final long EXPIRATION_TIME_MINUTES = 15;
 
@@ -86,6 +86,16 @@ public class AuthService {
         var usuario = usuarioRepository.findById(username)
                 .orElseThrow(UsuarioNotFoundException::new);
 
+        // TRATAMENTO DE NULO NO PONTO DE USO (Defensivo)
+        String tskClaim = usuario.getTokenSecurityKey();
+        if (tskClaim == null) {
+            // Isso não deve acontecer com a correção acima, mas se ocorrer,
+            // gere a chave imediatamente e salve, ou gere uma temporária.
+            usuario.generateNewTokenSecurityKey(); // Força a geração e atualiza o estado
+            usuarioRepository.save(usuario);          // Salva para persistir
+            tskClaim = usuario.getTokenSecurityKey();
+        }
+
         // Se for Login Social, o nome de usuário pode vir como o ID.
         // Você pode querer usar o email ou nome, se disponível nos atributos do OAuth2User.
         if (authentication.getPrincipal() instanceof OAuth2User oauth2User) {
@@ -109,7 +119,7 @@ public class AuthService {
                 .subject(username) // Usa o nome/email extraído
                 .claim("scope", authorities)
                 // CLAIM CRÍTICO: Inclui a chave de segurança atual
-                .claim("tsk", usuario.getTokenSecurityKey())
+                .claim("tsk", tskClaim)
                 .build();
 
         // 3. Codifica e retorna o token
@@ -200,7 +210,7 @@ public class AuthService {
     public void createPasswordResetToken(String emailOrUsername) {
 
         // 1. Busca o usuário por email ou username
-        var user = usuarioRepository.findByIdentifier(emailOrUsername) 
+        var user = usuarioRepository.findByIdentifier(emailOrUsername)
                 .orElse(null);
 
         // Medida de Segurança: Retorna OK mesmo se o usuário não for encontrado
@@ -210,7 +220,7 @@ public class AuthService {
         }
 
         // 2. Remove tokens antigos para este usuário (opcional, mas limpa)
-        tokenRepository.deleteAll(tokenRepository.findByUser(user)); 
+        tokenRepository.deleteAll(tokenRepository.findByUser(user));
 
         // 3. Cria e salva o novo token
         String tokenValue = UUID.randomUUID().toString();

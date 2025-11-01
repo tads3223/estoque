@@ -7,6 +7,7 @@ package br.edu.ifms.estoque.security.config;
 import br.edu.ifms.estoque.security.jwt.TokenRedirectSuccessHandler;
 import br.edu.ifms.estoque.security.adapter.DbClientRegistrationRepository;
 import br.edu.ifms.estoque.security.service.SocialUserService;
+import java.util.Arrays;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,6 +25,9 @@ import org.springframework.security.oauth2.server.authorization.config.annotatio
 import org.springframework.security.oauth2.server.authorization.settings.AuthorizationServerSettings;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 /**
  *
@@ -56,6 +60,24 @@ public class SecurityConfiguration {
         return AuthorizationServerSettings.builder().issuer("http://localhost:8080/estoque").build();
     }
 
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        var origins = Arrays.asList("*");
+
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(origins); // dominio do front end
+        configuration.setAllowedHeaders(Arrays.asList("Origin", "Accept", "X-Requested-With",
+                "Content-Type", "Authorization", "Access-Control-Request-Method",
+                "Access-Control-Request-Headers"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
+        configuration.setMaxAge(3600L);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+
+        return source;
+    }
+
     // 1. Cadeia de Filtros para o Servidor de Autorização (Endpoints OAuth2)
     @Bean
     @Order(1) // Ordem de prioridade mais alta
@@ -72,6 +94,11 @@ public class SecurityConfiguration {
 
         // 3. O restante da configuração
         return http
+                /**
+                 * Configuração do CORS para permitir acesso de aplicações
+                 * externas
+                 */
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .securityMatcher(authorizationServerConfigurer.getEndpointsMatcher())
                 .authorizeHttpRequests(authorize
                         -> authorize
@@ -109,6 +136,11 @@ public class SecurityConfiguration {
         };
 
         http
+                /**
+                 * Configuração do CORS para permitir acesso de aplicações
+                 * externas
+                 */
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
                 // 2.1 Configurações de acesso à URL
                 .authorizeHttpRequests(authorize
