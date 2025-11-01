@@ -8,6 +8,7 @@ import br.edu.ifms.estoque.arquitetura.repository.JpaSpecificationRepository;
 import br.edu.ifms.estoque.security.enumeration.SocialAuthProvider;
 import br.edu.ifms.estoque.usuario.model.Usuario;
 import java.util.Optional;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -16,7 +17,10 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UsuarioRepository extends JpaSpecificationRepository<Usuario, String> {
-    
+
     Optional<Usuario> findByLoginAndAuthProvider(String login, SocialAuthProvider provider);
-    
+
+    @Query("SELECT u FROM Usuario u WHERE u.login = :identifier OR u.email = :identifier")
+    Optional<Usuario> findByIdentifier(String identifier);
+
 }

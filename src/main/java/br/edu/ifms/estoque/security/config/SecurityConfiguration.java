@@ -4,7 +4,7 @@
  */
 package br.edu.ifms.estoque.security.config;
 
-import br.edu.ifms.estoque.security.handlers.TokenRedirectSuccessHandler;
+import br.edu.ifms.estoque.security.jwt.TokenRedirectSuccessHandler;
 import br.edu.ifms.estoque.security.adapter.DbClientRegistrationRepository;
 import br.edu.ifms.estoque.security.service.SocialUserService;
 import lombok.RequiredArgsConstructor;
@@ -101,11 +101,13 @@ public class SecurityConfiguration {
         // Lista de caminhos públicos, incluindo Swagger/OpenAPI
         String[] publicPaths = {
             "/api/auth/token", // Permite acesso ao endpoint de token para usuários deslogados
-            "/oauth2/**",  // Permite o fluxo de login social OIDC
+            "/api/auth/password/forgot", // Esqueci minha senha
+            "/api/auth/password/reset", // Alteração da senha
+            "/oauth2/**", // Permite o fluxo de login social OIDC
             "/v3/api-docs/**", // ENDPOINTS DE DEFINIÇÃO
             "/swagger-ui/**" // INTERFACE GRÁFICA
         };
-        
+
         http
                 .csrf(csrf -> csrf.disable())
                 // 2.1 Configurações de acesso à URL

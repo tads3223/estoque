@@ -32,6 +32,7 @@ public interface UsuarioMapper
     @Mapping(target = "perfis", ignore = true)
     @Mapping(target = "authProvider", ignore = true)
     @Mapping(target = "senha", ignore = true)
+    @Mapping(target = "tokenSecurityKey", ignore = true)
     @Override
     public Usuario toEntity(UsuarioCreateRequest request);
     
@@ -39,6 +40,7 @@ public interface UsuarioMapper
     @Mapping(target = "status", ignore = true)
     @Mapping(target = "perfis", ignore = true)
     @Mapping(target = "authProvider", ignore = true)
+    @Mapping(target = "tokenSecurityKey", ignore = true)
     public Usuario toEntity(UsuarioRegisterRequest request);
 
     @Mapping(target = "bloqueado", ignore = true)
@@ -48,6 +50,7 @@ public interface UsuarioMapper
     @Mapping(target = "authProvider", ignore = true)
     @Mapping(target = "senha", ignore = true)
     @Mapping(target = "login", ignore = true)
+    @Mapping(target = "tokenSecurityKey", ignore = true)
     @Override
     public Usuario update(UsuarioUpdateRequest request, @MappingTarget Usuario entity);
 }

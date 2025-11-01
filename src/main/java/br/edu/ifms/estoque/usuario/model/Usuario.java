@@ -18,6 +18,7 @@ import jakarta.persistence.UniqueConstraint;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -57,6 +58,11 @@ public class Usuario implements UserDetails {
     
     @Enumerated(EnumType.STRING)
     private SocialAuthProvider authProvider;
+    
+    // Token Security Version (ou Invalidation Key)
+    // Este valor muda toda vez que a senha é alterada ou o usuário é deslogado
+    @Builder.Default
+    private String tokenSecurityKey = UUID.randomUUID().toString();
 
     @ManyToMany
     @JoinTable(
@@ -74,6 +80,11 @@ public class Usuario implements UserDetails {
             )
     )
     private List<Perfil> perfis;
+    
+    // Método para forçar a invalidação de todos os tokens antigos
+    public void generateNewTokenSecurityKey() {
+        this.tokenSecurityKey = UUID.randomUUID().toString();
+    }
     
     public void add(Perfil value) {
         if (this.perfis == null) {

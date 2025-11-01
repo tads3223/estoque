@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package br.edu.ifms.estoque.security.config;
+package br.edu.ifms.estoque.security.jwt;
 
 import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jose.KeySourceException;
@@ -11,7 +11,6 @@ import com.nimbusds.jose.jwk.JWKMatcher;
 import com.nimbusds.jose.jwk.JWKSelector;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
-import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
 import org.springframework.context.annotation.Bean;
@@ -23,8 +22,13 @@ import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.util.List;
 import java.util.UUID;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator;
+import org.springframework.security.oauth2.core.OAuth2TokenValidator;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
+import org.springframework.security.oauth2.jwt.JwtValidators;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 
@@ -33,7 +37,10 @@ import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
  * @author nicho
  */
 @Configuration
+@RequiredArgsConstructor
 public class JwkSourceConfig {
+    
+    private final TokenVersionValidator tokenVersionValidator;
 
     @Bean
     public JWKSource<SecurityContext> jwkSource() {
@@ -82,7 +89,21 @@ public class JwkSourceConfig {
     // 4. Decodificador de JWT (para o Resource Server validar o próprio token)
     @Bean
     public JwtDecoder jwtDecoder(RSAPublicKey publicKey) {
-        return NimbusJwtDecoder.withPublicKey(publicKey).build();
+        var decoder = NimbusJwtDecoder.withPublicKey(publicKey).build();
+        
+        // Combina o validador padrão (expiração, issuer) com o seu validador customizado
+        // 1. Pega os validadores padrão
+        OAuth2TokenValidator<Jwt> defaultValidator = JwtValidators.createDefault();
+        
+        // 2. Cria um validador composto (default + customizado)
+        OAuth2TokenValidator<Jwt> combinedValidator = new DelegatingOAuth2TokenValidator<>(
+            defaultValidator, 
+            tokenVersionValidator // Adiciona sua lógica aqui
+        );
+
+        // 3. Define o validador no decoder
+        decoder.setJwtValidator(combinedValidator);
+        return decoder;
     }
 
     // Expõe o JwtEncoder usando o JWKSource
